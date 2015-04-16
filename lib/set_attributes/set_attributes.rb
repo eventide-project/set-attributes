@@ -8,7 +8,7 @@ class SetAttributes
   def initialize(receiver, params, log_black_list_regex=nil)
     @receiver = receiver
     @params = params
-    @log_black_list_regex = log_black_list_regex || Defaults.log_black_list_regex
+    @log_black_list_regex = log_black_list_regex || Attribute::Defaults.log_black_list_regex
   end
 
   def self.build(receiver, params, log_black_list_regex=nil)
@@ -31,11 +31,5 @@ class SetAttributes
       Attribute.set(receiver, attribute, value, log_black_list_regex)
     end
     receiver
-  end
-
-  module Defaults
-    def self.log_black_list_regex
-      /password|api_key|token/
-    end
   end
 end
