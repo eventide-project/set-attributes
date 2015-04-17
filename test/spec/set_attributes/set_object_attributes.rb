@@ -8,8 +8,8 @@ module SetObjectAttributes
     attr_accessor :yet_another_attribute
   end
 
-  def self.params
-    params = {
+  def self.data
+    data = {
       some_attribute: 'some value',
       some_other_attribute: 'some other value',
     }
@@ -23,9 +23,9 @@ end
 describe "Setting Attributes" do
   it "Sets attributes that correspond to hash entries" do
     receiver = SetObjectAttributes.example
-    params = SetObjectAttributes.params
+    data = SetObjectAttributes.data
 
-    SetAttributes.! receiver, params
+    SetAttributes.! receiver, data
 
     assert(receiver.some_attribute == 'some value')
     assert(receiver.some_other_attribute == 'some other value')
