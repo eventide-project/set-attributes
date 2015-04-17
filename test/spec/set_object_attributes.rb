@@ -1,5 +1,4 @@
 require_relative 'spec_init'
-require 'minitest/autorun'
 
 module SetObjectAttributes
   class Example
