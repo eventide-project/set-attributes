@@ -5,8 +5,8 @@ module BlackListedAttribute
     attr_accessor :black_listed_attribute
   end
 
-  def self.params
-    params = {
+  def self.data
+    data = {
       black_listed_attribute: 'some value'
     }
   end
@@ -19,8 +19,8 @@ end
 describe "Black-listed attributes" do
   it "Doesn't log their values" do
     receiver = BlackListedAttribute.example
-    params = BlackListedAttribute.params
+    data = BlackListedAttribute.data
 
-    SetAttributes.! receiver, params, /black_listed_attribute/
+    SetAttributes.! receiver, data, /black_listed_attribute/
   end
 end
