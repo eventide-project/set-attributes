@@ -1,4 +1,4 @@
-require 'logger'
+require 'telemetry/logger'
 require 'dependency'; Dependency.activate
 require 'settings'; Settings.activate
 
