@@ -20,7 +20,7 @@ class SetAttributes
 
         logger.debug "Set #{attribute} to #{log_value}"
       else
-        logger.warn "#{receiver} has no setter for #{attribute}"
+        logger.debug "NOTE: #{receiver} has no setter for #{attribute}"
       end
 
       value
