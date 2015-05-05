@@ -1,25 +1,27 @@
 require_relative 'spec_init'
 
-module BlackListedAttribute
-  class Example
-    attr_accessor :black_listed_attribute
-  end
+module Fixture
+  module BlackListedAttribute
+    class Example
+      attr_accessor :black_listed_attribute
+    end
 
-  def self.data
-    data = {
-      black_listed_attribute: 'some value'
-    }
-  end
+    def self.data
+      data = {
+        black_listed_attribute: 'some value'
+      }
+    end
 
-  def self.example
-    Example.new
+    def self.example
+      Example.new
+    end
   end
 end
 
 describe "Black-listed attributes" do
   it "Doesn't log their values" do
-    receiver = BlackListedAttribute.example
-    data = BlackListedAttribute.data
+    receiver = Fixture::BlackListedAttribute.example
+    data = Fixture::BlackListedAttribute.data
 
     SetAttributes.! receiver, data, /black_listed_attribute/
   end
