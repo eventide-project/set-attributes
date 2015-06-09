@@ -3,16 +3,18 @@ class SetAttributes
 
   attr_reader :receiver
   attr_reader :data
-  attr_reader :log_black_list_regex
+  attr_writer :log_black_list_regex
 
-  def initialize(receiver, data, log_black_list_regex=nil)
+  def log_black_list_regex
+    @log_black_list_regex ||= Attribute::Defaults.log_black_list_regex
+  end
+
+  def initialize(receiver, data)
     @receiver = receiver
     @data = data
-    @log_black_list_regex = log_black_list_regex || Attribute::Defaults.log_black_list_regex
   end
 
   def self.build(receiver, data, log_black_list_regex=nil)
-    logger = Telemetry::Logger.get self
     logger.trace "Building (Receiver: #{receiver}, Black List Regex: #{log_black_list_regex})"
 
     unless data.respond_to? :to_h
@@ -23,7 +25,8 @@ class SetAttributes
       data = data.to_h
     end
 
-    new(receiver, data, log_black_list_regex).tap do |instance|
+    new(receiver, data).tap do |instance|
+      instance.log_black_list_regex = log_black_list_regex
       Telemetry::Logger.configure instance
       logger.debug "Built (Receiver: #{receiver}, Black List Regex: #{log_black_list_regex})"
     end
@@ -39,5 +42,9 @@ class SetAttributes
       Attribute.set(receiver, attribute, value, log_black_list_regex)
     end
     receiver
+  end
+
+  def self.logger
+    @logger ||= Telemetry::Logger.get self
   end
 end
