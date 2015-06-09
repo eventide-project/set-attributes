@@ -15,7 +15,7 @@ class SetAttributes
   end
 
   def self.build(receiver, data, log_black_list_regex=nil)
-    logger.trace "Building (Receiver: #{receiver}, Black List Regex: #{log_black_list_regex})"
+    logger.trace "Building (Receiver: #{receiver})"
 
     unless data.respond_to? :to_h
       raise ArgumentError, "#{data} can't be used to set attributes. It can't be converted to Hash."
@@ -28,7 +28,7 @@ class SetAttributes
     new(receiver, data).tap do |instance|
       instance.log_black_list_regex = log_black_list_regex
       Telemetry::Logger.configure instance
-      logger.debug "Built (Receiver: #{receiver}, Black List Regex: #{log_black_list_regex})"
+      logger.debug "Built (Receiver: #{receiver}, Black List Regex: #{instance.log_black_list_regex})"
     end
   end
 
