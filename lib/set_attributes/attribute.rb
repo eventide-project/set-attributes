@@ -14,13 +14,14 @@ class SetAttributes
       end
 
       if receiver.respond_to? setter
-        logger.trace "Setting #{attribute} to #{log_value}"
+        logger.trace "Setting #{attribute}"
 
         receiver.send setter, value
 
-        logger.debug "Set #{attribute} to #{log_value}"
+        logger.debug "Set #{attribute}"
+        logger.data "#{attribute}: #{log_value}"
       else
-        logger.debug "NOTE: #{receiver} has no setter for #{attribute}"
+        logger.debug "#{receiver} has no setter for #{attribute}"
       end
 
       value
