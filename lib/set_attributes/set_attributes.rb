@@ -14,7 +14,7 @@ class SetAttributes
     @data = data
   end
 
-  def self.build(receiver, data, log_black_list_regex=nil)
+  def self.build(receiver, data, log_black_list_regex: nil)
     logger.trace "Building (Receiver: #{receiver})"
 
     unless data.respond_to? :to_h
@@ -32,8 +32,8 @@ class SetAttributes
     end
   end
 
-  def self.!(receiver, data, log_black_list_regex=nil)
-    instance = build(receiver, data, log_black_list_regex)
+  def self.!(receiver, data, log_black_list_regex: nil)
+    instance = build(receiver, data, log_black_list_regex: log_black_list_regex)
     instance.!
   end
 

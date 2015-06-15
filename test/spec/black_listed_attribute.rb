@@ -23,6 +23,6 @@ describe "Black-listed attributes" do
     receiver = Fixture::BlackListedAttribute.example
     data = Fixture::BlackListedAttribute.data
 
-    SetAttributes.! receiver, data, /black_listed_attribute/
+    SetAttributes.! receiver, data, log_black_list_regex: /black_listed_attribute/
   end
 end
