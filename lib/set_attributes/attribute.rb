@@ -31,7 +31,7 @@ class SetAttributes
       def self.log_black_list_regex
         logger = Telemetry::Logger.get self
         logger.trace "Getting default attribute black list regex"
-        /\A(password|api_key|data)\z|token\z/.tap do |instance|
+        /\A(password|api_key|data|metadata)\z|token\z/.tap do |instance|
           logger.debug "Got default attribute black list regex (#{instance})"
         end
       end
