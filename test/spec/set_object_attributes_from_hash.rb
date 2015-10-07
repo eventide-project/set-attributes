@@ -26,7 +26,7 @@ describe "Setting Attributes" do
     receiver = Fixture::SetFromHash.example
     data = Fixture::SetFromHash.data
 
-    SetAttributes.! receiver, data
+    SetAttributes.(receiver, data)
 
     assert(receiver.some_attribute == 'some value')
     assert(receiver.some_other_attribute == 'some other value')
