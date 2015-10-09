@@ -32,17 +32,19 @@ class SetAttributes
     end
   end
 
-  def self.!(receiver, data, log_black_list_regex: nil)
+  def self.call(receiver, data, log_black_list_regex: nil)
     instance = build(receiver, data, log_black_list_regex: log_black_list_regex)
-    instance.!
+    instance.()
   end
+  class << self; alias :! :call; end # TODO: Remove deprecated actuator [Kelsey, Thu Oct 08 2015]
 
-  def !
+  def call
     data.each do |attribute, value|
       Attribute.set(receiver, attribute, value, log_black_list_regex)
     end
     receiver
   end
+  alias :! :call # TODO: Remove deprecated actuator [Kelsey, Thu Oct 08 2015]
 
   def self.logger
     @logger ||= Telemetry::Logger.get self

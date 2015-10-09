@@ -32,7 +32,7 @@ describe "Setting Attributes" do
     receiver = Fixture::SetFromObject.example
     object = Fixture::SetFromObject.converts_to_hash
 
-    SetAttributes.! receiver, object
+    SetAttributes.(receiver, object)
 
     assert(receiver.some_attribute == 'some value')
     assert(receiver.some_other_attribute == 'some other value')

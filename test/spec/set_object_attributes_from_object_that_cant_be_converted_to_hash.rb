@@ -20,7 +20,7 @@ describe "Setting Attributes from an Object that Can't be Converted to a Hash" d
     object = Object.new
 
     assert_raises ArgumentError do
-      SetAttributes.! receiver, object
+      SetAttributes.(receiver, object)
     end
   end
 end
