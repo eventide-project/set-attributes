@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.name = 'set_attributes'
   s.summary = "Set an object's attributes"
-  s.version = '0.1.0'
+  s.version = '0.1.1'
   s.authors = ['']
   s.require_paths = ['lib']
   s.files = Dir.glob('{lib}/**/*')
