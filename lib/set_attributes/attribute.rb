@@ -1,7 +1,7 @@
 class SetAttributes
   module Attribute
     def self.set(receiver, attribute, value, log_black_list_regex=nil)
-      logger = Telemetry::Logger.get self
+      logger = Telemetry::Logger.build self
 
       log_black_list_regex ||= Defaults.log_black_list_regex
 
@@ -14,14 +14,14 @@ class SetAttributes
       end
 
       if receiver.respond_to? setter
-        logger.trace "Setting #{attribute}"
+        logger.opt_trace "Setting #{attribute}"
 
         receiver.send setter, value
 
-        logger.debug "Set #{attribute}"
-        logger.data "#{attribute}: #{log_value}"
+        logger.opt_debug "Set #{attribute}"
+        logger.opt_data "#{attribute}: #{log_value}"
       else
-        logger.debug "#{receiver} has no setter for #{attribute}"
+        logger.opt_debug "#{receiver} has no setter for #{attribute}"
       end
 
       value
@@ -29,10 +29,10 @@ class SetAttributes
 
     module Defaults
       def self.log_black_list_regex
-        logger = Telemetry::Logger.get self
-        logger.trace "Getting default attribute black list regex"
+        logger = Telemetry::Logger.build self
+        logger.opt_trace "Getting default attribute black list regex"
         /\A(password|api_key|data|metadata)\z|token\z/.tap do |instance|
-          logger.debug "Got default attribute black list regex (#{instance})"
+          logger.opt_debug "Got default attribute black list regex (#{instance})"
         end
       end
     end
