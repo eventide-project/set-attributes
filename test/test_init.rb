@@ -6,6 +6,7 @@ ENV['LOG_OPTIONAL'] ||= 'on'
 puts RUBY_DESCRIPTION
 
 require_relative '../init.rb'
+
 require 'runner'
 
-TestLogger = Telemetry::Logger.get 'Test Output'
+Telemetry::Logger::AdHoc.activate
