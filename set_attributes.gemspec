@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.name = 'set_attributes'
   s.version = '0.1.4'
-  s.summary = "Set an object's attributes"
+  s.summary = "Set an object's attributes from an object or hash with a similar attributes"
   s.description = ' '
 
   s.authors = ['Obsidian Software, Inc']
