@@ -27,7 +27,7 @@ describe "Ignored Attributes" do
     receiver = Fixture::DontSetIgnoredAttributes.example
     data = Fixture::DontSetIgnoredAttributes.data
 
-    SetAttributes.(receiver, data, ignore: [:some_other_attribute, :yet_another_attribute])
+    SetAttributes.(receiver, data, exclude: [:some_other_attribute, :yet_another_attribute])
 
     assert(receiver.some_attribute == 'some value')
     assert(receiver.some_other_attribute.nil?)
