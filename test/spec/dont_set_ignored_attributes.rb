@@ -9,9 +9,10 @@ module Fixture
     end
 
     def self.data
-      data = {
+      {
         some_attribute: 'some value',
         some_other_attribute: 'some other value',
+        yet_another_attribute: 'yet another value'
       }
     end
 
@@ -23,13 +24,13 @@ end
 
 describe "Ignored Attributes" do
   it "Aren't set" do
-    receiver = Fixture::SetFromHash.example
-    data = Fixture::SetFromHash.data
+    receiver = Fixture::DontSetIgnoredAttributes.example
+    data = Fixture::DontSetIgnoredAttributes.data
 
-    SetAttributes.(receiver, data)
+    SetAttributes.(receiver, data, ignore: [:some_other_attribute, :yet_another_attribute])
 
     assert(receiver.some_attribute == 'some value')
-    assert(receiver.some_other_attribute == 'some other value')
+    assert(receiver.some_other_attribute.nil?)
     assert(receiver.yet_another_attribute.nil?)
   end
 end
