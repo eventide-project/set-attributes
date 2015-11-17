@@ -3,7 +3,13 @@ class SetAttributes
 
   attr_reader :receiver
   attr_reader :data
+  attr_writer :include
+  attr_writer :ignore
   attr_writer :log_black_list_regex
+
+  def include
+    @include ||= []
+  end
 
   def ignore
     @ignore ||= []
@@ -13,13 +19,12 @@ class SetAttributes
     @log_black_list_regex ||= Attribute::Defaults.log_black_list_regex
   end
 
-  def initialize(receiver, data, ignore=nil)
+  def initialize(receiver, data)
     @receiver = receiver
     @data = data
-    @ignore = ignore
   end
 
-  def self.build(receiver, data, log_black_list_regex: nil, ignore: nil)
+  def self.build(receiver, data, log_black_list_regex: nil, include: nil, ignore: nil)
     logger.opt_trace "Building (Receiver: #{receiver}, Ignored Attributes: #{ignore || '(none)'})"
 
     unless data.respond_to? :to_h
@@ -33,15 +38,20 @@ class SetAttributes
     ignore ||= []
     ignore = Array(ignore)
 
-    new(receiver, data, ignore).tap do |instance|
+    include ||= []
+    include = Array(include)
+
+    new(receiver, data).tap do |instance|
       instance.log_black_list_regex = log_black_list_regex
+      instance.include = include
+      instance.ignore = ignore
       Telemetry::Logger.configure instance
       logger.opt_debug "Built (Receiver: #{receiver}, Ignored Attributes: #{ignore || '(none)'}, Black List Regex: #{instance.log_black_list_regex})"
     end
   end
 
-  def self.call(receiver, data, log_black_list_regex: nil, ignore: nil)
-    instance = build(receiver, data, log_black_list_regex: log_black_list_regex, ignore: ignore)
+  def self.call(receiver, data, log_black_list_regex: nil, include: nil, ignore: nil)
+    instance = build(receiver, data, log_black_list_regex: log_black_list_regex, include: include, ignore: ignore)
 
     instance.()
   end
