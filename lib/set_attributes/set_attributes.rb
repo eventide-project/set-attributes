@@ -65,7 +65,7 @@ class SetAttributes
       value = data[attribute]
       Attribute.set(receiver, attribute, value, log_black_list_regex)
     end
-    receiver
+    attributes
   end
   alias :! :call # TODO: Remove deprecated actuator [Kelsey, Thu Oct 08 2015]
 
