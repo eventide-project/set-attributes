@@ -25,7 +25,7 @@ class SetAttributes
   end
 
   def self.build(receiver, data, log_black_list_regex: nil, include: nil, exclude: nil)
-    logger.opt_trace "Building (Receiver: #{receiver}, Ignored Attributes: #{exclude || '(none)'})"
+    logger.opt_trace "Building (Receiver: #{receiver}, Included Attributes: #{include || '(none)'}, Excluded Attributes: #{exclude || '(none)'})"
 
     unless data.respond_to? :to_h
       raise ArgumentError, "#{data} can't be used to set attributes. It can't be converted to Hash."
@@ -40,13 +40,14 @@ class SetAttributes
 
     include ||= []
     include = Array(include)
+    include = data.keys if include.empty?
 
     new(receiver, data).tap do |instance|
       instance.log_black_list_regex = log_black_list_regex
       instance.include = include
       instance.exclude = exclude
       Telemetry::Logger.configure instance
-      logger.opt_debug "Built (Receiver: #{receiver}, Ignored Attributes: #{exclude || '(none)'}, Black List Regex: #{instance.log_black_list_regex})"
+      logger.opt_debug "Built (Receiver: #{receiver}, Included Attributes: #{include || '(none)'}, Excluded Attributes: #{exclude || '(none)'}, Black List Regex: #{instance.log_black_list_regex})"
     end
   end
 
@@ -58,10 +59,11 @@ class SetAttributes
   class << self; alias :! :call; end # TODO: Remove deprecated actuator [Kelsey, Thu Oct 08 2015]
 
   def call
-    data.each do |attribute, value|
-      unless exclude.include?(attribute)
-        Attribute.set(receiver, attribute, value, log_black_list_regex)
-      end
+    attributes = (data.keys & include) - exclude
+
+    attributes.each do |attribute|
+      value = data[attribute]
+      Attribute.set(receiver, attribute, value, log_black_list_regex)
     end
     receiver
   end
