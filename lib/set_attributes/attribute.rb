@@ -1,7 +1,11 @@
 class SetAttributes
   module Attribute
-    def self.set(receiver, attribute, value, log_black_list_regex=nil)
+    class Error < RuntimeError; end
+
+    def self.set(receiver, attribute, value, log_black_list_regex=nil, strict: nil)
       logger = Telemetry::Logger.build self
+
+      strict ||= false
 
       log_black_list_regex ||= Defaults.log_black_list_regex
 
@@ -21,7 +25,13 @@ class SetAttributes
         logger.opt_debug "Set #{attribute}"
         logger.opt_data "#{attribute}: #{log_value}"
       else
-        logger.opt_debug "#{receiver} has no setter for #{attribute}"
+        error_msg = "#{receiver} has no setter for #{attribute}"
+        if strict
+          logger.error error_msg
+          raise Error, error_msg
+        else
+          logger.opt_debug "#{receiver} has no setter for #{attribute}"
+        end
       end
 
       value
