@@ -34,7 +34,7 @@ describe "Mapped Attributes" do
     ])
 
     assert(receiver.some_attribute == 'some value')
-    # assert(receiver.some_other_attribute == 'some other value')
-    # assert(receiver.yet_another_attribute.nil?)
+    assert(receiver.some_other_attribute == 'some other value')
+    assert(receiver.yet_another_attribute.nil?)
   end
 end
