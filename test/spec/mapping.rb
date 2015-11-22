@@ -27,7 +27,6 @@ describe "Mapped Attributes" do
     receiver = Fixture::Mapping.example
     data = Fixture::Mapping.data
 
-    # SetAttributes.(receiver, data, include: [:some_other_attribute, :yet_another_attribute])
     SetAttributes.(receiver, data, include: [
       {:an_attribute => :some_attribute},
       :some_other_attribute
