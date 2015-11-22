@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 Gem::Specification.new do |s|
   s.name = 'set_attributes'
-  s.version = '0.2.1'
+  s.version = '0.2.2'
   s.summary = "Set an object's attributes from an object or hash with a similar attributes"
   s.description = ' '
 
