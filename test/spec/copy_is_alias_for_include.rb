@@ -1,7 +1,7 @@
 require_relative 'spec_init'
 
 module Fixture
-  module Mapping
+  module CopyAlias
     class Example
       attr_accessor :some_attribute
       attr_accessor :some_other_attribute
@@ -10,9 +10,9 @@ module Fixture
 
     def self.data
       {
-        an_attribute: 'some value',
+        some_attribute: 'some value',
         some_other_attribute: 'some other value',
-        another_attribute: 'yet another value'
+        yet_another_attribute: 'yet another value'
       }
     end
 
@@ -22,18 +22,15 @@ module Fixture
   end
 end
 
-describe "Mapped Attributes" do
+describe "Copied Attributes" do
   it "Are set" do
-    receiver = Fixture::Mapping.example
-    data = Fixture::Mapping.data
+    receiver = Fixture::CopyAlias.example
+    data = Fixture::CopyAlias.data
 
-    SetAttributes.(receiver, data, include: [
-      {:an_attribute => :some_attribute},
-      :some_other_attribute
-    ])
+    SetAttributes.(receiver, data, copy: [:some_other_attribute, :yet_another_attribute])
 
-    assert(receiver.some_attribute == 'some value')
+    assert(receiver.some_attribute.nil?)
     assert(receiver.some_other_attribute == 'some other value')
-    assert(receiver.yet_another_attribute.nil?)
+    assert(receiver.yet_another_attribute == 'yet another value')
   end
 end

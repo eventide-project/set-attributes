@@ -29,7 +29,7 @@ class SetAttributes
     @data = data
   end
 
-  def self.build(receiver, data, log_black_list_regex: nil, include: nil, exclude: nil, strict: nil)
+  def self.build(receiver, data, log_black_list_regex: nil, copy: nil, include: nil, exclude: nil, strict: nil)
     strict ||= false
 
     logger.opt_trace "Building (Receiver: #{receiver}, Included Attributes: #{include || '(none)'}, Excluded Attributes: #{exclude || '(none)'}, Strict: #{strict})"
@@ -45,6 +45,10 @@ class SetAttributes
     exclude ||= []
     exclude = Array(exclude)
 
+    unless copy.nil?
+      include = copy
+    end
+
     include ||= []
     include = Array(include)
     include = data.keys if include.empty?
@@ -59,8 +63,8 @@ class SetAttributes
     end
   end
 
-  def self.call(receiver, data, log_black_list_regex: nil, include: nil, exclude: nil, strict: nil)
-    instance = build(receiver, data, log_black_list_regex: log_black_list_regex, include: include, exclude: exclude, strict: strict)
+  def self.call(receiver, data, log_black_list_regex: nil, include: nil, copy: nil, exclude: nil, strict: nil)
+    instance = build(receiver, data, log_black_list_regex: log_black_list_regex, copy: copy, include: include, exclude: exclude, strict: strict)
 
     instance.()
   end
