@@ -67,15 +67,34 @@ class SetAttributes
   class << self; alias :! :call; end # TODO: Remove deprecated actuator [Kelsey, Thu Oct 08 2015]
 
   def call
-    attributes = (data.keys & include) - exclude
+    include_mapping = self.include_mapping
+    attributes = (data.keys & include_mapping.keys) - exclude
 
-    attributes.each do |attribute|
-      value = data[attribute]
-      Attribute.set(receiver, attribute, value, log_black_list_regex, strict: strict)
+    set_attributes = []
+    attributes.each do |from_attribute|
+      to_attribute = include_mapping[from_attribute]
+
+      value = data[from_attribute]
+
+      Attribute.set(receiver, to_attribute, value, log_black_list_regex, strict: strict)
+
+      set_attributes << to_attribute
     end
-    attributes
+    set_attributes
   end
   alias :! :call # TODO: Remove deprecated actuator [Kelsey, Thu Oct 08 2015]
+
+  def include_mapping
+    mapping = {}
+    include.each do |item|
+      if item.is_a? Hash
+        mapping[item.keys.first] = item.values.first
+      else
+        mapping[item] = item
+      end
+    end
+    mapping
+  end
 
   def self.logger
     @logger ||= Telemetry::Logger.get self
