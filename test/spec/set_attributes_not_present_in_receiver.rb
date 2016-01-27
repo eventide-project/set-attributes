@@ -32,8 +32,11 @@ context "In Strict Mode Setting Attributes not Present in Receiver" do
     receiver = Fixture::SetNotPresent.example
     data = Fixture::SetNotPresent.data
 
-    assert_raises SetAttributes::Attribute::Error do
+    begin
       SetAttributes.(receiver, data, strict: true)
+    rescue SetAttributes::Attribute::Error => error
     end
+
+    assert error
   end
 end

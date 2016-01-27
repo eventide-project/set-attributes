@@ -19,8 +19,11 @@ context "Setting Attributes from an Object that Can't be Converted to a Hash" do
     receiver = Fixture::SetFromObjectThatCantBeConvertedToHash.example
     object = Object.new
 
-    assert_raises ArgumentError do
+    begin
       SetAttributes.(receiver, object)
+    rescue ArgumentError => error
     end
+
+    assert error
   end
 end
