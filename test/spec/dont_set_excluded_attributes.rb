@@ -22,8 +22,8 @@ module Fixture
   end
 end
 
-describe "Ignored Attributes" do
-  it "Aren't set" do
+context "Ignored Attributes" do
+  test "Aren't set" do
     receiver = Fixture::DontSetIgnoredAttributes.example
     data = Fixture::DontSetIgnoredAttributes.data
 

@@ -21,8 +21,8 @@ module Fixture
   end
 end
 
-describe "Setting Attributes" do
-  it "Sets attributes that correspond to hash entries" do
+context "Setting Attributes" do
+  test "Sets attributes that correspond to hash entries" do
     receiver = Fixture::SetFromHash.example
     data = Fixture::SetFromHash.data
 

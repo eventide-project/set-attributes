@@ -22,8 +22,8 @@ module Fixture
   end
 end
 
-describe "Mapped Attributes" do
-  it "Are set" do
+context "Mapped Attributes" do
+  test "Are set" do
     receiver = Fixture::Mapping.example
     data = Fixture::Mapping.data
 

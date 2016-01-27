@@ -22,8 +22,8 @@ module Fixture
   end
 end
 
-describe "Included Attributes" do
-  it "Are set" do
+context "Included Attributes" do
+  test "Are set" do
     receiver = Fixture::OnlySetIncludedAttributes.example
     data = Fixture::OnlySetIncludedAttributes.data
 

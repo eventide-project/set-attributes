@@ -14,8 +14,8 @@ module Fixture
   end
 end
 
-describe "Setting Attributes from an Object that Can't be Converted to a Hash" do
-  it "Is an error" do
+context "Setting Attributes from an Object that Can't be Converted to a Hash" do
+  test "Is an error" do
     receiver = Fixture::SetFromObjectThatCantBeConvertedToHash.example
     object = Object.new
 

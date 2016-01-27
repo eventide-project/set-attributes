@@ -18,8 +18,8 @@ module Fixture
   end
 end
 
-describe "Setting Attributes not Present in Receiver" do
-  it "Isn't an error" do
+context "Setting Attributes not Present in Receiver" do
+  test "Isn't an error" do
     receiver = Fixture::SetNotPresent.example
     data = Fixture::SetNotPresent.data
 
@@ -27,8 +27,8 @@ describe "Setting Attributes not Present in Receiver" do
   end
 end
 
-describe "In Strict Mode Setting Attributes not Present in Receiver" do
-  it "Is an error" do
+context "In Strict Mode Setting Attributes not Present in Receiver" do
+  test "Is an error" do
     receiver = Fixture::SetNotPresent.example
     data = Fixture::SetNotPresent.data
 

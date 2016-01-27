@@ -18,8 +18,8 @@ module Fixture
   end
 end
 
-describe "Black-listed attributes" do
-  it "Doesn't log their values" do
+context "Black-listed attributes" do
+  test "Doesn't log their values" do
     receiver = Fixture::BlackListedAttribute.example
     data = Fixture::BlackListedAttribute.data
 

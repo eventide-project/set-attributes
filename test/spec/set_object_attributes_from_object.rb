@@ -27,8 +27,8 @@ module Fixture
   end
 end
 
-describe "Setting Attributes" do
-  it "Sets attributes from an object that can be converted to a hash" do
+context "Setting Attributes" do
+  test "Sets attributes from an object that can be converted to a hash" do
     receiver = Fixture::SetFromObject.example
     object = Fixture::SetFromObject.converts_to_hash
 

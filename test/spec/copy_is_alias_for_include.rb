@@ -22,8 +22,8 @@ module Fixture
   end
 end
 
-describe "Copied Attributes" do
-  it "Are set" do
+context "Copied Attributes" do
+  test "Are set" do
     receiver = Fixture::CopyAlias.example
     data = Fixture::CopyAlias.data
 
