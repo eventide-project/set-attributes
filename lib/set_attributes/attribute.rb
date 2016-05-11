@@ -40,7 +40,6 @@ class SetAttributes
     module Defaults
       def self.log_black_list_regex
         /\A(password|api_key|data|metadata)\z|token\z/
-        end
       end
     end
   end
