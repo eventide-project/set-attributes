@@ -32,8 +32,6 @@ class SetAttributes
   def self.build(receiver, data, log_black_list_regex: nil, copy: nil, include: nil, exclude: nil, strict: nil)
     strict ||= false
 
-    logger.opt_trace "Building (Receiver: #{receiver}, Included Attributes: #{include || '(none)'}, Excluded Attributes: #{exclude || '(none)'}, Strict: #{strict})"
-
     unless data.respond_to? :to_h
       raise ArgumentError, "#{data} can't be used to set attributes. It can't be converted to Hash."
     end
@@ -59,7 +57,6 @@ class SetAttributes
       instance.exclude = exclude
       instance.strict = strict
       Telemetry::Logger.configure instance
-      logger.opt_debug "Built (Receiver: #{receiver}, Included Attributes: #{include || '(none)'}, Excluded Attributes: #{exclude || '(none)'}, Black List Regex: #{instance.log_black_list_regex}, Strict: #{strict})"
     end
   end
 
