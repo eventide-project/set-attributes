@@ -6,7 +6,6 @@ class SetAttributes
   attr_writer :include
   attr_writer :exclude
   attr_writer :strict
-  attr_writer :log_black_list_regex
 
   def include
     @include ||= []
@@ -20,16 +19,12 @@ class SetAttributes
     @strict ||= false
   end
 
-  def log_black_list_regex
-    @log_black_list_regex ||= Attribute::Defaults.log_black_list_regex
-  end
-
   def initialize(receiver, data)
     @receiver = receiver
     @data = data
   end
 
-  def self.build(receiver, data, log_black_list_regex: nil, copy: nil, include: nil, exclude: nil, strict: nil)
+  def self.build(receiver, data, copy: nil, include: nil, exclude: nil, strict: nil)
     strict ||= false
 
     unless data.respond_to? :to_h
@@ -52,7 +47,6 @@ class SetAttributes
     include = data.keys if include.empty?
 
     new(receiver, data).tap do |instance|
-      instance.log_black_list_regex = log_black_list_regex
       instance.include = include
       instance.exclude = exclude
       instance.strict = strict
@@ -60,8 +54,8 @@ class SetAttributes
     end
   end
 
-  def self.call(receiver, data, log_black_list_regex: nil, include: nil, copy: nil, exclude: nil, strict: nil)
-    instance = build(receiver, data, log_black_list_regex: log_black_list_regex, copy: copy, include: include, exclude: exclude, strict: strict)
+  def self.call(receiver, data, include: nil, copy: nil, exclude: nil, strict: nil)
+    instance = build(receiver, data, copy: copy, include: include, exclude: exclude, strict: strict)
 
     instance.()
   end
@@ -77,7 +71,7 @@ class SetAttributes
 
       value = data[from_attribute]
 
-      Attribute.set(receiver, to_attribute, value, log_black_list_regex, strict: strict)
+      Attribute.set(receiver, to_attribute, value, strict: strict)
 
       set_attributes << to_attribute
     end
