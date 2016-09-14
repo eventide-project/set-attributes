@@ -12,8 +12,8 @@ class SetAttributes
       if receiver.respond_to? setter
         receiver.send setter, value
       else
-        error_msg = "#{receiver} has no setter for #{attribute}"
         if strict
+          error_msg = "#{receiver} has no setter for #{attribute}"
           logger.error error_msg
           raise Error, error_msg
         else
