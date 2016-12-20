@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 Gem::Specification.new do |s|
   s.name = 'evt-set_attributes'
-  s.version = '0.1.1.1'
+  s.version = '0.1.1.2'
   s.summary = "Set an object's attributes from an object or hash with a similar attributes"
   s.description = ' '
 
@@ -17,5 +17,5 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'evt-telemetry-logger'
 
-  s.add_development_dependency 'ntl-test_bench'
+  s.add_development_dependency 'test_bench'
 end
