@@ -1,7 +1,7 @@
-require_relative 'bench_init'
+require_relative '../test_init'
 
 module Fixture
-  module CopyAlias
+  module OnlySetIncludedAttributes
     class Example
       attr_accessor :some_attribute
       attr_accessor :some_other_attribute
@@ -22,12 +22,12 @@ module Fixture
   end
 end
 
-context "Copied Attributes" do
+context "Included Attributes" do
   test "Are set" do
-    receiver = Fixture::CopyAlias.example
-    data = Fixture::CopyAlias.data
+    receiver = Fixture::OnlySetIncludedAttributes.example
+    data = Fixture::OnlySetIncludedAttributes.data
 
-    SetAttributes.(receiver, data, copy: [:some_other_attribute, :yet_another_attribute])
+    SetAttributes.(receiver, data, include: [:some_other_attribute, :yet_another_attribute])
 
     assert(receiver.some_attribute.nil?)
     assert(receiver.some_other_attribute == 'some other value')

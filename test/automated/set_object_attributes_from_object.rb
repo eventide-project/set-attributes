@@ -1,4 +1,4 @@
-require_relative 'bench_init'
+require_relative '../test_init'
 
 module Fixture
   module SetFromObject
