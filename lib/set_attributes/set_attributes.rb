@@ -1,6 +1,4 @@
 class SetAttributes
-  dependency :logger, Telemetry::Logger
-
   attr_reader :receiver
   attr_reader :data
   attr_writer :include
@@ -50,7 +48,6 @@ class SetAttributes
       instance.include = include
       instance.exclude = exclude
       instance.strict = strict
-      Telemetry::Logger.configure instance
     end
   end
 
