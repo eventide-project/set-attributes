@@ -1,4 +1,4 @@
-require_relative '../test_init'
+require_relative '../../test_init'
 
 module Fixture
   module Mapping
@@ -22,18 +22,20 @@ module Fixture
   end
 end
 
-context "Mapped Attributes" do
-  test "Are set" do
-    receiver = Fixture::Mapping.example
-    data = Fixture::Mapping.data
+context "Object Receiver" do
+  receiver = Fixture::Mapping.example
+  data = Fixture::Mapping.data
 
+  context "Mapped Attributes" do
     SetAttributes.(receiver, data, include: [
       {:an_attribute => :some_attribute},
       :some_other_attribute
     ])
 
-    assert(receiver.some_attribute == 'some value')
-    assert(receiver.some_other_attribute == 'some other value')
-    assert(receiver.yet_another_attribute.nil?)
+    test "Are set" do
+      assert(receiver.some_attribute == 'some value')
+      assert(receiver.some_other_attribute == 'some other value')
+      assert(receiver.yet_another_attribute.nil?)
+    end
   end
 end

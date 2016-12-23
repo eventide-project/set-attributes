@@ -1,7 +1,7 @@
-require_relative '../test_init'
+require_relative '../../test_init'
 
 module Fixture
-  module DontSetIgnoredAttributes
+  module DontSetExcludedAttributes
     class Example
       attr_accessor :some_attribute
       attr_accessor :some_other_attribute
@@ -22,10 +22,10 @@ module Fixture
   end
 end
 
-context "Ignored Attributes" do
+context "Excluded Attributes" do
   test "Aren't set" do
-    receiver = Fixture::DontSetIgnoredAttributes.example
-    data = Fixture::DontSetIgnoredAttributes.data
+    receiver = Fixture::DontSetExcludedAttributes.example
+    data = Fixture::DontSetExcludedAttributes.data
 
     SetAttributes.(receiver, data, exclude: [:some_other_attribute, :yet_another_attribute])
 

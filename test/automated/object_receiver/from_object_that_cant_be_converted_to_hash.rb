@@ -1,4 +1,4 @@
-require_relative '../test_init'
+require_relative '../../test_init'
 
 module Fixture
   module SetFromObjectThatCantBeConvertedToHash
@@ -14,16 +14,15 @@ module Fixture
   end
 end
 
-context "Setting Attributes from an Object that Can't be Converted to a Hash" do
-  test "Is an error" do
+context "Object Receiver" do
+  context "From an Object that Can't be Converted to a Hash" do
     receiver = Fixture::SetFromObjectThatCantBeConvertedToHash.example
     object = Object.new
 
-    begin
-      SetAttributes.(receiver, object)
-    rescue ArgumentError => error
+    test "Is an error" do
+      assert proc { SetAttributes.(receiver, object) } do
+        raises_error? ArgumentError
+      end
     end
-
-    assert error
   end
 end

@@ -1,4 +1,4 @@
-require_relative '../test_init'
+require_relative '../../test_init'
 
 module Fixture
   module SetFromHash
@@ -21,15 +21,17 @@ module Fixture
   end
 end
 
-context "Setting Attributes" do
-  test "Sets attributes that correspond to hash entries" do
+context "Object Receiver" do
+  context "From Hash" do
     receiver = Fixture::SetFromHash.example
     data = Fixture::SetFromHash.data
 
     SetAttributes.(receiver, data)
 
-    assert(receiver.some_attribute == 'some value')
-    assert(receiver.some_other_attribute == 'some other value')
-    assert(receiver.yet_another_attribute.nil?)
+    test "Sets attributes that correspond to hash keys" do
+      assert(receiver.some_attribute == 'some value')
+      assert(receiver.some_other_attribute == 'some other value')
+      assert(receiver.yet_another_attribute.nil?)
+    end
   end
 end
