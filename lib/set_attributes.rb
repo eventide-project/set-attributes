@@ -1,4 +1,3 @@
-require 'telemetry/logger'
 require 'dependency'; Dependency.activate
 
 require 'set_attributes/attribute'
