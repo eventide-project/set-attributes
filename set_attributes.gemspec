@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 Gem::Specification.new do |s|
   s.name = 'evt-set_attributes'
-  s.version = '0.1.1.2'
+  s.version = '0.2.0.0'
   s.summary = "Set an object's attributes from an object or hash with a similar attributes"
   s.description = ' '
 
