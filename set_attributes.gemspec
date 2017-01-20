@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.name = 'evt-set_attributes'
   s.version = '0.1.1.2'
-  s.summary = "Set an object's attributes from an object or hash with a similar attributes"
+  s.summary = "Set an object's attributes from a hash or an object that implements to_h"
   s.description = ' '
 
   s.authors = ['The Eventide Project']

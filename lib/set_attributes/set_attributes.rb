@@ -87,8 +87,4 @@ class SetAttributes
     end
     mapping
   end
-
-  def self.logger
-    @logger ||= Telemetry::Logger.get self
-  end
 end
