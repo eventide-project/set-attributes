@@ -3,7 +3,7 @@ class SetAttributes
     class Error < RuntimeError; end
 
     def self.set(receiver, attribute, value, strict: nil)
-      strict ||= false
+      strict = true if strict.nil?
 
       setter = :"#{attribute}="
 

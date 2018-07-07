@@ -53,7 +53,6 @@ class SetAttributes
 
   def self.call(receiver, data, include: nil, copy: nil, exclude: nil, strict: nil)
     instance = build(receiver, data, copy: copy, include: include, exclude: exclude, strict: strict)
-
     instance.()
   end
   class << self; alias :! :call; end # TODO: Remove deprecated actuator [Kelsey, Thu Oct 08 2015]
