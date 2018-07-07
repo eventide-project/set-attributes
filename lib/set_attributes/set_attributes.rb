@@ -55,7 +55,6 @@ class SetAttributes
     instance = build(receiver, data, copy: copy, include: include, exclude: exclude, strict: strict)
     instance.()
   end
-  class << self; alias :! :call; end # TODO: Remove deprecated actuator [Kelsey, Thu Oct 08 2015]
 
   def call
     include_mapping = self.include_mapping
