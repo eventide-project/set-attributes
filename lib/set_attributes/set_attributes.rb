@@ -74,7 +74,6 @@ class SetAttributes
     end
     set_attributes
   end
-  alias :! :call # TODO: Remove deprecated actuator [Kelsey, Thu Oct 08 2015]
 
   def include_mapping
     mapping = {}
