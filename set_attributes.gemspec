@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 Gem::Specification.new do |s|
   s.name = 'evt-set_attributes'
-  s.version = '0.4.0.0'
+  s.version = '0.5.0.0'
   s.summary = "Set an object's attributes from a hash or an object that implements to_h"
   s.description = ' '
 
