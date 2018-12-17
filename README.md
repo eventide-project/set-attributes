@@ -9,15 +9,28 @@ require 'set_attribute'
 
 class SomeClass
   attr_accessor :some_attribute
+  attr_accessor :some_other_attribute
+  attr_accessor :yet_another_attribute
 end
 
 receiver = SomeClass.new
-data = { some_attribute: 'some value' }
+
+data = {
+  some_attribute: 'some value',
+  some_other_attribute: 'some other value',
+  yet_another_attribute: 'yet another value'
+}
 
 SetAttributes.(receiver, data)
 
 receiver.some_attribute
 # => "some value"
+
+receiver.some_other_attribute
+# => "some other value"
+
+receiver.yet_another_attribute
+# => "yet another value"
 ```
 
 ## Usage
@@ -32,24 +45,56 @@ To control what properties are set, the following optional parameters may be spe
  - `copy:` Alias for `include`.
  - `exclude:` Array of symbols specifying the attributes to be prevented from being set. If a key is present in both `include` and `exclude`, it will be excluded.
 
+### Include
+
 ```ruby
-require 'set_attributes'
+SetAttributes.(receiver, data, include: [
+  :some_other_attribute,
+  :yet_another_attribute
+])
 
-class SomeClass
-  attr_accessor :some_attribute
-  attr_accessor :some_other_attribute
-end
+receiver.some_attribute
+# => nil
 
-receiver = SomeClass.new
-data = { some_attribute: 'some value', some_other_attribute: 'some other value' }
+receiver.some_other_attribute
+# => "some other value"
 
-SetAttributes.(receiver, data, exclude: [:some_other_attribute])
+receiver.yet_another_attribute
+# => "yet another value"
+```
+
+#### Singular Form
+
+If there is only one attribute being included, it can be specified as a single attribute name without enclosing it in an array.
+
+```ruby
+SetAttributes.(receiver, data, include: :some_other_attribute)
+```
+
+### Exclude
+
+```ruby
+SetAttributes.(receiver, data, exclude: [
+  :some_other_attribute,
+  :yet_another_attribute
+])
 
 receiver.some_attribute
 # => "some value"
 
 receiver.some_other_attribute
 # => nil
+
+receiver.yet_other_attribute
+# => nil
+```
+
+#### Singular Form
+
+If there is only one attribute being excluded, it can be specified as a single attribute name without enclosing it in an array.
+
+```ruby
+SetAttributes.(receiver, data, exclude: :some_other_attribute)
 ```
 
 ## Strictness
