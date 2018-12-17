@@ -5,7 +5,7 @@ Set an object's attributes.
 ## Synopsis
 
 ```ruby
-require "'set_attribute'
+require 'set_attribute'
 
 class MyClass
   attr_accessor :my_attribute
