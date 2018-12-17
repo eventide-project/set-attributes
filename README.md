@@ -104,11 +104,9 @@ By default, `SetAttributes` will not set an attribute value that the receiver do
 ```ruby
 require 'set_attributes'
 
-class SomeClass
-end
-
-receiver = SomeClass.new
-data = { some_attribute: 'some value' }
+data = {
+  some_random_attribute: 'some value'
+}
 
 SetAttributes.(receiver, data, strict: true)
 # => raises SetAttribute::Attribute::Error
