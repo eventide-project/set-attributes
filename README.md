@@ -7,17 +7,17 @@ Set an object's attributes.
 ```ruby
 require 'set_attribute'
 
-class MyClass
-  attr_accessor :my_attribute
+class SomeClass
+  attr_accessor :some_attribute
 end
 
-receiver = MyClass.new
-data = { my_attribute: 'value' }
+receiver = SomeClass.new
+data = { some_attribute: 'some value' }
 
 SetAttributes.(receiver, data)
 
-receiver.my_attribute
-# => "value"
+receiver.some_attribute
+# => "some value"
 ```
 
 ## Usage
@@ -35,20 +35,20 @@ To control what properties are set, the following optional parameters may be spe
 ```ruby
 require 'set_attributes'
 
-class MyClass
-  attr_accessor :my_attribute
-  attr_accessor :my_other_attribute
+class SomeClass
+  attr_accessor :some_attribute
+  attr_accessor :some_other_attribute
 end
 
-receiver = MyClass.new
-data = { my_attribute: 'value', my_other_attribute: 'value 2' }
+receiver = SomeClass.new
+data = { some_attribute: 'some value', some_other_attribute: 'some other value' }
 
-SetAttributes.(receiver, data, exclude: [:my_other_attribute])
+SetAttributes.(receiver, data, exclude: [:some_other_attribute])
 
-receiver.my_attribute
-# => "value"
+receiver.some_attribute
+# => "some value"
 
-receiver.my_other_attribute
+receiver.some_other_attribute
 # => nil
 ```
 
@@ -59,11 +59,11 @@ By default, `SetAttributes` will not set an attribute value that the receiver do
 ```ruby
 require 'set_attributes'
 
-class MyClass
+class SomeClass
 end
 
-receiver = MyClass.new
-data = { my_attribute: 'value' }
+receiver = SomeClass.new
+data = { some_attribute: 'some value' }
 
 SetAttributes.(receiver, data, strict: true)
 # => raises SetAttribute::Attribute::Error
