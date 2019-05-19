@@ -1,7 +1,7 @@
 require_relative '../../test_init'
 
-context 'Attribute Map' do
-  context 'Get Missing Attribute' do
+context "Attribute Map" do
+  context "Get Missing Attribute" do
     entries = []
 
     attribute_map = SetAttributes::Map.build(entries)
