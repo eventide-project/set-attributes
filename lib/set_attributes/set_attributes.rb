@@ -1,21 +1,21 @@
 class SetAttributes
   attr_reader :receiver
   attr_reader :data
-  attr_writer :include
-  attr_writer :exclude
-  attr_writer :strict
 
   def include
     @include ||= []
   end
+  attr_writer :include
 
   def exclude
     @exclude ||= []
   end
+  attr_writer :exclude
 
   def strict
     @strict ||= false
   end
+  attr_writer :strict
 
   def initialize(receiver, data)
     @receiver = receiver
