@@ -2,10 +2,10 @@ require_relative '../../test_init'
 
 context 'Attribute Map' do
   context 'Balance Missing Receiver Attributes' do
-    context 'Unary Entries' do
-      entries = Controls::AttributeMap::Unbalanced.example
+    context 'Unary Mapping' do
+      mapping = Controls::AttributeMap::Unbalanced.data
 
-      attribute_map = SetAttributes::Map.build(entries)
+      attribute_map = SetAttributes::Map.build(mapping)
 
       attribute_map.keys.each do |source_attribute|
         receiver_attribute = attribute_map[source_attribute]
@@ -17,10 +17,10 @@ context 'Attribute Map' do
       end
     end
 
-    context 'Balanced Entry' do
-      entries = Controls::AttributeMap::Transform.example
+    context 'Balanced Mapping' do
+      mapping = Controls::AttributeMap::Transform.data
 
-      attribute_map = SetAttributes::Map.build(entries)
+      attribute_map = SetAttributes::Map.build(mapping)
 
       source_attribute = :some_attribute
       receiver_attribute = attribute_map[source_attribute]

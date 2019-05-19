@@ -2,7 +2,7 @@ class SetAttributes
   module Controls
     module AttributeMap
       module Unary
-        def self.example
+        def self.data
           [
             :some_attribute,
             :some_other_attribute
@@ -11,7 +11,7 @@ class SetAttributes
       end
 
       module Unbalanced
-        def self.example
+        def self.data
           [
             :some_attribute,
             {:some_other_attribute => :some_other_attribute}
@@ -20,7 +20,7 @@ class SetAttributes
       end
 
       module Balanced
-        def self.example
+        def self.data
           [
             {:some_attribute => :some_attribute},
             {:some_other_attribute => :some_other_attribute}
@@ -29,7 +29,7 @@ class SetAttributes
       end
 
       module Transform
-        def self.example
+        def self.data
           [
             {:some_attribute => :some_other_attribute}
           ]
