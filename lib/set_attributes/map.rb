@@ -26,8 +26,14 @@ class SetAttributes
     end
 
     def [](key)
-      entry = mapping(key)
-      entry &.values[0]
+      mapping = mapping(key)
+      values = mapping &.values
+
+      if values.nil?
+        nil
+      else
+        values[0]
+      end
     end
 
     def mapping(key)
