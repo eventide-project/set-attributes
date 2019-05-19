@@ -7,7 +7,7 @@ context "Missing Receiver Attributes" do
 
     test "Is an error" do
       assert proc { SetAttributes.(receiver, data, strict: true) } do
-        raises_error? SetAttributes::Attribute::Error
+        raises_error? SetAttributes::Set::Error
       end
     end
   end

@@ -66,7 +66,7 @@ class SetAttributes
 
       value = data[from_attribute]
 
-      Attribute.set(receiver, to_attribute, value, strict: strict)
+      Set.(receiver, to_attribute, value, strict: strict)
 
       set_attributes << to_attribute
     end
