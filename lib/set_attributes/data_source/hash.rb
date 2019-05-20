@@ -14,7 +14,9 @@ class SetAttributes
 
         attribute_map = SetAttributes::Map.build(include)
 
-        new(data, attribute_map)
+        instance = new(data, attribute_map)
+        instance.exclude(exclude)
+        instance
       end
 
       def get_value(attribute)

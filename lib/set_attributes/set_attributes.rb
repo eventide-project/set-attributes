@@ -81,6 +81,7 @@ class SetAttributes
 
       set_attributes << to_attribute
     end
+
     set_attributes
   end
 

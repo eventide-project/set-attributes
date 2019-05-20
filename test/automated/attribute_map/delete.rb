@@ -34,10 +34,12 @@ context "Attribute Map" do
 
     attribute_map = SetAttributes::Map.build(mapping)
 
+    assert(attribute_map.count == 2)
+
     attribute_map.delete([:some_attribute, :some_other_attribute])
 
     test "Mappings are removed from the attribute map" do
-      assert(attribute_map.mappings.count == 0)
+      assert(attribute_map.empty?)
     end
   end
 end

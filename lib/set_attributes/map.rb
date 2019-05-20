@@ -42,6 +42,10 @@ class SetAttributes
       mapping(attribute) != nil
     end
 
+    def empty?
+      count == 0
+    end
+
     def add(*mappings)
       mappings = Array(mappings).flatten
 
