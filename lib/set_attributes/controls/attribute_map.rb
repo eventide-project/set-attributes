@@ -1,6 +1,10 @@
 class SetAttributes
   module Controls
     module AttributeMap
+      def self.example
+        Unary.data
+      end
+
       module Unary
         def self.data
           [

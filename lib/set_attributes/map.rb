@@ -1,20 +1,20 @@
 class SetAttributes
-  class Map # < ::Array
+  class Map
     include Enumerable
 
-    attr_reader :entries
+    attr_reader :mappings
 
-    def initialize(entries)
-      @entries = entries
+    def initialize(mappings)
+      @mappings = mappings
     end
 
-    def self.build(entries)
-      balanced_entries = balance(entries)
+    def self.build(mappings)
+      balanced_entries = balance(mappings)
       new(balanced_entries)
     end
 
-    def self.balance(entries)
-      entries.map do |entry|
+    def self.balance(mappings)
+      mappings.map do |entry|
         mapping = {}
         if entry.is_a? Hash
           mapping[entry.keys.first] = entry.values.first
@@ -36,8 +36,8 @@ class SetAttributes
       end
     end
 
-    def mapping(key)
-      find { |mapping| mapping.keys[0] == key }
+    def mapping(attribute)
+      find { |mapping| mapping.keys[0] == attribute }
     end
 
     def keys
@@ -46,8 +46,21 @@ class SetAttributes
       end
     end
 
+    def delete(*attributes)
+      attributes = Array(attributes).flatten
+
+      deleted_attributes = []
+      attributes.each do |attribute|
+        mapping = mapping(attribute)
+        deleted_attribute = mappings.delete(mapping)
+        deleted_attributes << deleted_attribute
+      end
+
+      deleted_attributes
+    end
+
     def each(&action)
-      entries.each(&action)
+      mappings.each(&action)
     end
   end
 end
