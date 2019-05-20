@@ -1,7 +1,4 @@
 class SetAttributes
-  attr_reader :receiver
-  attr_reader :data
-
   def include
     @include ||= []
   end
@@ -16,11 +13,6 @@ class SetAttributes
     @strict ||= false
   end
   attr_writer :strict
-
-  def initialize(receiver, data)
-    @receiver = receiver
-    @data = data
-  end
 
   def self.build(receiver, data, copy: nil, include: nil, exclude: nil, strict: nil)
     strict ||= false
@@ -44,7 +36,8 @@ class SetAttributes
     include = Array(include)
     include = data.keys if include.empty?
 
-    new(receiver, data).tap do |instance|
+    # new(receiver, data).tap do |instance|
+    new.tap do |instance|
       instance.include = include
       instance.exclude = exclude
       instance.strict = strict
@@ -53,10 +46,17 @@ class SetAttributes
 
   def self.call(receiver, data, include: nil, copy: nil, exclude: nil, strict: nil)
     instance = build(receiver, data, copy: copy, include: include, exclude: exclude, strict: strict)
-    instance.()
+    instance.(receiver, data)
   end
 
-  def call
+  def call(receiver, data)
+    ## ---
+    ## Shoring. Remove. Scott Mon May 20 2019
+    unless data.is_a? Hash
+      data = data.to_h
+    end
+    ## -
+
     include_mapping = self.include_mapping
     attributes = (data.keys & include_mapping.keys) - exclude
 
