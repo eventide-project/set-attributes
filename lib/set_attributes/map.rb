@@ -58,6 +58,7 @@ class SetAttributes
 
       deleted_attributes
     end
+    alias :exclude :delete
 
     def each(&action)
       mappings.each(&action)
