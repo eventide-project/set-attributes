@@ -9,10 +9,10 @@ class SetAttributes
         @attribute_map = attribute_map
       end
 
-      def self.build(data, mappings=nil)
-        mappings ||= data.keys
+      def self.build(data, include=nil, exclude: nil)
+        include ||= data.keys
 
-        attribute_map = SetAttributes::Map.build(mappings)
+        attribute_map = SetAttributes::Map.build(include)
 
         new(data, attribute_map)
       end
@@ -20,6 +20,10 @@ class SetAttributes
       def get_value(attribute)
         source_attribute = attribute_map[attribute]
         data[source_attribute]
+      end
+
+      def exclude(*attributes)
+        attribute_map.exclude(attributes)
       end
     end
   end

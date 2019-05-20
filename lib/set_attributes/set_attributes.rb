@@ -1,18 +1,24 @@
 class SetAttributes
-  def include
-    @include ||= []
-  end
-  attr_writer :include
+  attr_reader :attribute_map
 
-  def exclude
-    @exclude ||= []
-  end
-  attr_writer :exclude
+  # def include
+  #   @include ||= []
+  # end
+  # attr_writer :include
+
+  # def exclude
+  #   @exclude ||= []
+  # end
+  # attr_writer :exclude
 
   def strict
     @strict ||= false
   end
   attr_writer :strict
+
+  def initialize(attribute_map)
+    @attribute_map = attribute_map
+  end
 
   def self.build(receiver, data, copy: nil, include: nil, exclude: nil, strict: nil)
     strict ||= false
@@ -34,7 +40,12 @@ class SetAttributes
 
     include ||= []
     include = Array(include)
+
+    ## This is too late. It's only hash data source that knows this.
+    ## Hash data source has to construct the attribute map?
     include = data.keys if include.empty?
+
+    attribute_map = Map.build(include)
 
     # new(receiver, data).tap do |instance|
     new.tap do |instance|
@@ -45,7 +56,7 @@ class SetAttributes
   end
 
   def self.call(receiver, data, include: nil, copy: nil, exclude: nil, strict: nil)
-    instance = build(receiver, data, copy: copy, include: include, exclude: exclude, strict: strict)
+    instance = build(copy: copy, include: include, exclude: exclude, strict: strict)
     instance.(receiver, data)
   end
 

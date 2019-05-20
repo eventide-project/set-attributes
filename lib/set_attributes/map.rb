@@ -38,6 +38,10 @@ class SetAttributes
       end
     end
 
+    def include?(attribute)
+      mapping(attribute) != nil
+    end
+
     def add(*mappings)
       mappings = Array(mappings).flatten
 
