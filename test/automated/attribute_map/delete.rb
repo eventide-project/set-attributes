@@ -24,7 +24,7 @@ context "Attribute Map" do
 
     attribute_map.delete(SecureRandom.hex.to_sym)
 
-    test "Mapping is not removed from the attribute map)" do
+    test "Mapping is not removed from the attribute map" do
       assert(attribute_map.mappings == mappings)
     end
   end
@@ -36,7 +36,7 @@ context "Attribute Map" do
 
     attribute_map.delete([:some_attribute, :some_other_attribute])
 
-    test "Mappings are removed from the attribute map)" do
+    test "Mappings are removed from the attribute map" do
       assert(attribute_map.mappings.count == 0)
     end
   end

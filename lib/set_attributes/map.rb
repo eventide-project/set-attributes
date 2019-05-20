@@ -2,27 +2,23 @@ class SetAttributes
   class Map
     include Enumerable
 
-    attr_reader :mappings
-
-    def initialize(mappings)
-      @mappings = mappings
+    def mappings
+      @mappings ||= []
     end
 
     def self.build(mappings)
-      balanced_entries = balance(mappings)
-      new(balanced_entries)
+      instance = new
+
+      mappings.each do |mapping|
+        instance.add(mapping)
+      end
+
+      instance
     end
 
-    def self.balance(mappings)
-      mappings.map do |entry|
-        mapping = {}
-        if entry.is_a? Hash
-          mapping[entry.keys.first] = entry.values.first
-        else
-          mapping[entry] = entry
-        end
-        mapping
-      end
+    def self.balance_mapping(mapping)
+      return mapping if mapping.is_a? Hash
+      { mapping => mapping }
     end
 
     def [](key)
@@ -37,8 +33,24 @@ class SetAttributes
     end
 
     def mapping(attribute)
-      find { |mapping| mapping.keys[0] == attribute }
+      find do |mapping|
+        mapping.keys[0] == attribute
+      end
     end
+
+    def add(*mappings)
+      mappings = Array(mappings).flatten
+
+      added_mappings = []
+      mappings.each do |mapping|
+        balanced_mapping = self.class.balance_mapping(mapping)
+        self.mappings << balanced_mapping
+        added_mappings << balanced_mapping
+      end
+
+      added_mappings
+    end
+    alias :<< :add
 
     def keys
       map do |mapping|

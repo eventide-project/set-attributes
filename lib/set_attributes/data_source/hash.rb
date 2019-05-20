@@ -9,10 +9,10 @@ class SetAttributes
         @attribute_map = attribute_map
       end
 
-      def self.build(data, mapping=nil)
-        mapping ||= data.keys
+      def self.build(data, mappings=nil)
+        mappings ||= data.keys
 
-        attribute_map = SetAttributes::Map.build(mapping)
+        attribute_map = SetAttributes::Map.build(mappings)
 
         new(data, attribute_map)
       end
