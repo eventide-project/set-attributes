@@ -2,7 +2,7 @@ require_relative '../../../test_init'
 
 context "Data Source" do
   context "Object" do
-    context "Mapping is Omitted" do
+    context "Include is Omitted" do
       source = Controls::Object.example
 
       test "Is an error" do
