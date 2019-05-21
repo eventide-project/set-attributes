@@ -1,12 +1,12 @@
 class SetAttributes
   module Controls
     module DataSource
-      def self.example
+      def self.example(exclude: nil)
         mapping = Controls::AttributeMap.example
 
         source = SetAttributes::Controls::Hash.example
 
-        data_source = Example.build(source, mapping)
+        data_source = Example.build(source, mapping, exclude: exclude)
 
         data_source
       end
