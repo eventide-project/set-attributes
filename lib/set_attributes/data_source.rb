@@ -3,6 +3,10 @@ class SetAttributes
     def self.included(cls)
       cls.class_exec do
         extend Build
+
+        def self.assure_include(source, include)
+          include
+        end
       end
     end
 

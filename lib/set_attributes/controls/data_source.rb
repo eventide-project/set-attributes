@@ -13,10 +13,6 @@ class SetAttributes
 
       class Example
         include SetAttributes::DataSource
-
-        def self.assure_include(source, include)
-          include
-        end
       end
     end
   end
