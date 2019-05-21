@@ -1,6 +1,5 @@
 class SetAttributes
   attr_reader :receiver
-  attr_reader :data
   attr_reader :data_source
 
   def strict
@@ -8,13 +7,12 @@ class SetAttributes
   end
   attr_writer :strict
 
-  def initialize(receiver, data, data_source)
+  def initialize(receiver, data_source)
     @receiver = receiver
-    @data = data
     @data_source = data_source
   end
 
-  def self.build(receiver, data, copy: nil, include: nil, exclude: nil, strict: nil)
+  def self.build(receiver, source, copy: nil, include: nil, exclude: nil, strict: nil)
     strict ||= false
 
     exclude ||= []
@@ -27,15 +25,15 @@ class SetAttributes
     include ||= []
     include = Array(include)
 
-    data_source = DataSource::Hash.build(data, include, exclude: exclude)
+    data_source = DataSource::Hash.build(source, include, exclude: exclude)
 
-    new(receiver, data, data_source).tap do |instance|
+    new(receiver, data_source).tap do |instance|
       instance.strict = strict
     end
   end
 
-  def self.call(receiver, data, include: nil, copy: nil, exclude: nil, strict: nil)
-    instance = build(receiver, data, copy: copy, include: include, exclude: exclude, strict: strict)
+  def self.call(receiver, source, include: nil, copy: nil, exclude: nil, strict: nil)
+    instance = build(receiver, source, copy: copy, include: include, exclude: exclude, strict: strict)
     instance.()
   end
 
