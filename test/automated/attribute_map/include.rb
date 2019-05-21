@@ -16,7 +16,7 @@ context "Attribute Map" do
       attribute_map = SetAttributes::Map.new
 
       test "Mapping isn't included" do
-        assert(attribute_map.include?(:some_attribute))
+        refute(attribute_map.include?(:some_attribute))
       end
     end
   end

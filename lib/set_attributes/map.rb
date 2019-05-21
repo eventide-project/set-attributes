@@ -83,5 +83,14 @@ class SetAttributes
     def each(&action)
       mappings.each(&action)
     end
+
+    def each_mapping(&action)
+      each do |mapping|
+        source_attribute = mapping.keys[0]
+        receiver_attribute = mapping.values[0]
+
+        action.(source_attribute, receiver_attribute)
+      end
+    end
   end
 end

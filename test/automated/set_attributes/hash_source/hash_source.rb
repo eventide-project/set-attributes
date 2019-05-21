@@ -1,4 +1,4 @@
-require_relative '../../test_init'
+require_relative '../../../test_init'
 
 context "Object Receiver" do
   context "From Hash" do

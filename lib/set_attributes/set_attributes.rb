@@ -1,5 +1,5 @@
 class SetAttributes
-  attr_reader :attribute_map
+  attr_reader :data_source
 
   # def include
   #   @include ||= []
@@ -16,20 +16,26 @@ class SetAttributes
   end
   attr_writer :strict
 
-  def initialize(attribute_map)
-    @attribute_map = attribute_map
+  def initialize(data_source)
+    @data_source = data_source
   end
 
   def self.build(receiver, data, copy: nil, include: nil, exclude: nil, strict: nil)
     strict ||= false
 
-    unless data.respond_to? :to_h
-      raise ArgumentError, "#{data} can't be used to set attributes. It can't be converted to Hash."
-    end
+    ## Future: Data Source
 
-    unless data.is_a? Hash
-      data = data.to_h
-    end
+      ## Remove this when objects are supported
+      ## Refer this responsibility to object data source
+      # unless data.respond_to? :to_h
+      #   raise ArgumentError, "#{data} can't be used to set attributes. It can't be converted to Hash."
+      # end
+
+      # unless data.is_a? Hash
+      #   data = data.to_h
+      # end
+
+    ##
 
     exclude ||= []
     exclude = Array(exclude)
@@ -43,43 +49,51 @@ class SetAttributes
 
     ## This is too late. It's only hash data source that knows this.
     ## Hash data source has to construct the attribute map?
-    include = data.keys if include.empty?
+    # include = data.keys if include.empty?
 
-    attribute_map = Map.build(include)
+    data_source = DataSource::Hash.build(data, include, exclude: exclude)
 
     # new(receiver, data).tap do |instance|
-    new.tap do |instance|
-      instance.include = include
-      instance.exclude = exclude
+    new(data_source).tap do |instance|
+      # instance.include = include
+      # instance.exclude = exclude
       instance.strict = strict
     end
   end
 
   def self.call(receiver, data, include: nil, copy: nil, exclude: nil, strict: nil)
-    instance = build(copy: copy, include: include, exclude: exclude, strict: strict)
+    instance = build(receiver, data, copy: copy, include: include, exclude: exclude, strict: strict)
     instance.(receiver, data)
   end
 
   def call(receiver, data)
     ## ---
     ## Shoring. Remove. Scott Mon May 20 2019
-    unless data.is_a? Hash
-      data = data.to_h
-    end
+    # unless data.is_a? Hash
+    #   data = data.to_h
+    # end
     ## -
 
-    include_mapping = self.include_mapping
-    attributes = (data.keys & include_mapping.keys) - exclude
+    ## Legacy
+    ## include_mapping = self.include_mapping
+    ## attributes = (data.keys & include_mapping.keys) - exclude
 
     set_attributes = []
-    attributes.each do |from_attribute|
-      to_attribute = include_mapping[from_attribute]
+    ## attributes.each do |from_attribute|
+    ##   to_attribute = include_mapping[from_attribute]
 
-      value = data[from_attribute]
+    ##   value = data[from_attribute]
 
-      Set.(receiver, to_attribute, value, strict: strict)
+    ##   Set.(receiver, to_attribute, value, strict: strict)
 
-      set_attributes << to_attribute
+    ##   set_attributes << to_attribute
+    ## end
+
+    data_source.attribute_map.each_mapping do |source_attribute, receiver_attribute|
+      value = data_source.get_value(source_attribute)
+
+      Set.(receiver, receiver_attribute, value, strict: strict)
+      set_attributes << receiver_attribute
     end
 
     set_attributes

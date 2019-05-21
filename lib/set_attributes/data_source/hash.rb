@@ -10,7 +10,9 @@ class SetAttributes
       end
 
       def self.build(data, include=nil, exclude: nil)
-        include ||= data.keys
+        if include.nil? || include.empty?
+          include = data.keys
+        end
 
         attribute_map = SetAttributes::Map.build(include)
 
