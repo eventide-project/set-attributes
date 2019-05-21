@@ -1,17 +1,17 @@
 require_relative '../../../test_init'
 
 context "Data Source" do
-  context "Hash" do
+  context "Object" do
     context "Get Value from Source Attribute that Isn't Mapped" do
       mapping = Controls::AttributeMap::Unbalanced.data
 
-      data = SetAttributes::Controls::Hash.example
+      data = SetAttributes::Controls::Object.example
 
-      hash_source = SetAttributes::DataSource::Hash.build(data, mapping)
+      object_source = SetAttributes::DataSource::Object.build(data, mapping)
 
-      value = hash_source.get_value(SecureRandom.hex.to_sym)
+      value = object_source.get_value(SecureRandom.hex.to_sym)
 
-      test "Source value is retrieved by the receiver attribute name" do
+      test "Source value is nil" do
         assert(value.nil?)
       end
     end

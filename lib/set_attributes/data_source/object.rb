@@ -15,6 +15,9 @@ class SetAttributes
 
       def get_value(attribute)
         source_attribute = attribute_map[attribute]
+
+        return nil if source_attribute.nil?
+
         source.send(source_attribute)
       end
     end

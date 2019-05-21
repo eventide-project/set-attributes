@@ -11,7 +11,7 @@ context "Data Source" do
 
       value = hash_source.get_value(SecureRandom.hex.to_sym)
 
-      test "Source value is retrieved by the receiver attribute name" do
+      test "Source value is nil" do
         assert(value.nil?)
       end
     end
