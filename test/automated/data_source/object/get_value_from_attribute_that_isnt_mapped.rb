@@ -9,7 +9,7 @@ context "Data Source" do
 
       object_source = SetAttributes::DataSource::Object.build(data, mapping)
 
-      value = object_source.get_value(SecureRandom.hex.to_sym)
+      value = object_source.get_value(Controls::Attribute::Random.example)
 
       test "Source value is nil" do
         assert(value.nil?)

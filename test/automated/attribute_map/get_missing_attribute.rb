@@ -6,7 +6,7 @@ context "Attribute Map" do
 
     attribute_map = SetAttributes::Map.build(entries)
 
-    source_attribute = SecureRandom.hex.to_sym
+    source_attribute = Controls::Attribute::Random.example
     receiver_attribute = attribute_map[source_attribute]
 
     test "Value is nil" do

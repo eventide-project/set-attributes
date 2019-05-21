@@ -22,7 +22,7 @@ context "Attribute Map" do
 
     mappings = attribute_map.mappings
 
-    attribute_map.delete(SecureRandom.hex.to_sym)
+    attribute_map.delete(Controls::Attribute::Random.example)
 
     test "Mapping is not removed from the attribute map" do
       assert(attribute_map.mappings == mappings)
