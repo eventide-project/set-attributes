@@ -48,16 +48,4 @@ class SetAttributes
 
     set_attributes
   end
-
-  def include_mapping
-    mapping = {}
-    include.each do |item|
-      if item.is_a? Hash
-        mapping[item.keys.first] = item.values.first
-      else
-        mapping[item] = item
-      end
-    end
-    mapping
-  end
 end
