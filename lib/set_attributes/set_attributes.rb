@@ -25,7 +25,7 @@ class SetAttributes
     include ||= []
     include = Array(include)
 
-    data_source = DataSource::Hash.build(source, include, exclude: exclude)
+    data_source = SetAttributes::DataSource.build_data_source(source, include, exclude: exclude)
 
     new(receiver, data_source).tap do |instance|
       instance.strict = strict
