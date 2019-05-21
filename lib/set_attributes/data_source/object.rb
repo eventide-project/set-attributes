@@ -1,6 +1,8 @@
 class SetAttributes
   module DataSource
     class Object
+      Error = Class.new(RuntimeError)
+
       attr_reader :data
       attr_reader :attribute_map
 
@@ -10,13 +12,9 @@ class SetAttributes
       end
 
       def self.build(data, include=nil, exclude: nil)
-        ## Validate source and parameters
-        ## it's an error to omit include mappings
-
-        ## Shoring:
-        include ||= []
-        ##
-
+        if include.nil?
+          raise Error, "Object data source is missing the include mapping"
+        end
 
         attribute_map = SetAttributes::Map.build(include)
 
