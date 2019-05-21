@@ -4,7 +4,7 @@ context "Data Source" do
   context "Factory" do
     context "Hash" do
       source = Controls::Hash.example
-      
+
       data_source = SetAttributes::DataSource.build_data_source(source)
 
       test "Is a hash data source" do
