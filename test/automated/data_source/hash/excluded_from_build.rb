@@ -19,23 +19,23 @@ context "Data Source" do
         end
       end
 
-      # context "Exclude Many Mappings" do
-      #   mapping = Controls::AttributeMap.example
+      context "Exclude Many Mappings" do
+        mapping = Controls::AttributeMap.example
 
-      #   data = SetAttributes::Controls::Hash.example
+        data = SetAttributes::Controls::Hash.example
 
-      #   hash_source = SetAttributes::DataSource::Hash.build(data, mapping)
+        hash_source = SetAttributes::DataSource::Hash.build(data, mapping)
 
-      #   assert(hash_source.attribute_map.include?(:some_attribute))
-      #   assert(hash_source.attribute_map.include?(:some_other_attribute))
+        assert(hash_source.attribute_map.include?(:some_attribute))
+        assert(hash_source.attribute_map.include?(:some_other_attribute))
 
-      #   hash_source.exclude(:some_attribute, :some_other_attribute)
+        hash_source.exclude(:some_attribute, :some_other_attribute)
 
-      #   test "Mappings are removed from the attribute map" do
-      #     refute(hash_source.attribute_map.include?(:some_attribute))
-      #     refute(hash_source.attribute_map.include?(:some_other_attribute))
-      #   end
-      # end
+        test "Mappings are removed from the attribute map" do
+          refute(hash_source.attribute_map.include?(:some_attribute))
+          refute(hash_source.attribute_map.include?(:some_other_attribute))
+        end
+      end
     end
   end
 end
