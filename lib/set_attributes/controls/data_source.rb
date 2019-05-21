@@ -2,7 +2,7 @@ class SetAttributes
   module Controls
     module DataSource
       def self.example(exclude: nil)
-        mapping = Controls::AttributeMap.example
+        mapping = Controls::Mapping.example
 
         source = SetAttributes::Controls::Hash.example
 

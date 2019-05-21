@@ -2,7 +2,7 @@ require_relative '../../test_init'
 
 context "Attribute Map" do
   context "Delete a Mapping" do
-    mapping = Controls::AttributeMap.example
+    mapping = Controls::Mapping.example
 
     attribute_map = SetAttributes::Map.build(mapping)
 
@@ -16,7 +16,7 @@ context "Attribute Map" do
   end
 
   context "Delete a Mapping that Doesn't Exist" do
-    mapping = Controls::AttributeMap.example
+    mapping = Controls::Mapping.example
 
     attribute_map = SetAttributes::Map.build(mapping)
 
@@ -30,7 +30,7 @@ context "Attribute Map" do
   end
 
   context "Delete Many Mappings" do
-    mapping = Controls::AttributeMap.example
+    mapping = Controls::Mapping.example
 
     attribute_map = SetAttributes::Map.build(mapping)
 
