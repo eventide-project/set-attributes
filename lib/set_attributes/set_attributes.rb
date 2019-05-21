@@ -1,37 +1,19 @@
 class SetAttributes
   attr_reader :receiver
-  attr_reader :data
-  attr_writer :include
-  attr_writer :exclude
-  attr_writer :strict
-
-  def include
-    @include ||= []
-  end
-
-  def exclude
-    @exclude ||= []
-  end
+  attr_reader :data_source
 
   def strict
     @strict ||= false
   end
+  attr_writer :strict
 
-  def initialize(receiver, data)
+  def initialize(receiver, data_source)
     @receiver = receiver
-    @data = data
+    @data_source = data_source
   end
 
-  def self.build(receiver, data, copy: nil, include: nil, exclude: nil, strict: nil)
+  def self.build(receiver, source, copy: nil, include: nil, exclude: nil, strict: nil)
     strict ||= false
-
-    unless data.respond_to? :to_h
-      raise ArgumentError, "#{data} can't be used to set attributes. It can't be converted to Hash."
-    end
-
-    unless data.is_a? Hash
-      data = data.to_h
-    end
 
     exclude ||= []
     exclude = Array(exclude)
@@ -42,46 +24,28 @@ class SetAttributes
 
     include ||= []
     include = Array(include)
-    include = data.keys if include.empty?
 
-    new(receiver, data).tap do |instance|
-      instance.include = include
-      instance.exclude = exclude
+    data_source = SetAttributes::DataSource.build_data_source(source, include, exclude: exclude)
+
+    new(receiver, data_source).tap do |instance|
       instance.strict = strict
     end
   end
 
-  def self.call(receiver, data, include: nil, copy: nil, exclude: nil, strict: nil)
-    instance = build(receiver, data, copy: copy, include: include, exclude: exclude, strict: strict)
+  def self.call(receiver, source, include: nil, copy: nil, exclude: nil, strict: nil)
+    instance = build(receiver, source, copy: copy, include: include, exclude: exclude, strict: strict)
     instance.()
   end
 
   def call
-    include_mapping = self.include_mapping
-    attributes = (data.keys & include_mapping.keys) - exclude
-
     set_attributes = []
-    attributes.each do |from_attribute|
-      to_attribute = include_mapping[from_attribute]
+    data_source.attribute_map.each_mapping do |source_attribute, receiver_attribute|
+      value = data_source.get_value(source_attribute)
 
-      value = data[from_attribute]
-
-      Attribute.set(receiver, to_attribute, value, strict: strict)
-
-      set_attributes << to_attribute
+      Assign.(receiver, receiver_attribute, value, strict: strict)
+      set_attributes << receiver_attribute
     end
+
     set_attributes
-  end
-
-  def include_mapping
-    mapping = {}
-    include.each do |item|
-      if item.is_a? Hash
-        mapping[item.keys.first] = item.values.first
-      else
-        mapping[item] = item
-      end
-    end
-    mapping
   end
 end

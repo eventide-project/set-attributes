@@ -1,10 +1,10 @@
 # set_attributes
 
-Set an object's attributes.
+Set an object's attributes from a source object or hash.
 
 ## Usage
 
-Basic usage of `SetAttributes` takes two arguments, the receiver, and the data source. The data argument must be either a hash, or an object that responds to `to_h`. Upon actuation, `SetAttributes` will set all values from the data argument to corresponding attributes on receiver.
+`SetAttributes` takes two arguments, the receiver, and the source. The source argument can be either a hash or an object. Upon actuation, `SetAttributes` will assign all values from the source to the corresponding attributes on receiver.
 
 ```ruby
 require 'set_attribute'
@@ -16,14 +16,39 @@ class SomeClass
 end
 
 receiver = SomeClass.new
+```
 
-data = {
+### Hash Source
+
+```ruby
+source = {
   some_attribute: 'some value',
   some_other_attribute: 'some other value',
   yet_another_attribute: 'yet another value'
 }
 
-SetAttributes.(receiver, data)
+SetAttributes.(receiver, source)
+
+receiver.some_attribute
+# => "some value"
+
+receiver.some_other_attribute
+# => "some other value"
+
+receiver.yet_another_attribute
+# => "yet another value"
+```
+
+### Object Source
+
+```ruby
+source = SomeClass.new
+
+source.some_attribute = 'some value',
+source.some_other_attribute = 'some other value'
+source.yet_another_attribute = 'yet another value'
+
+SetAttributes.(receiver, source)
 
 receiver.some_attribute
 # => "some value"
@@ -46,7 +71,7 @@ To control what properties are set, the following optional parameters may be spe
 ### Include
 
 ```ruby
-SetAttributes.(receiver, data, include: [
+SetAttributes.(receiver, source, include: [
   :some_other_attribute,
   :yet_another_attribute
 ])
@@ -66,13 +91,13 @@ receiver.yet_another_attribute
 If there is only one attribute being included, it can be specified as a single attribute name without enclosing it in an array.
 
 ```ruby
-SetAttributes.(receiver, data, include: :some_other_attribute)
+SetAttributes.(receiver, source, include: :some_other_attribute)
 ```
 
 ### Exclude
 
 ```ruby
-SetAttributes.(receiver, data, exclude: [
+SetAttributes.(receiver, source, exclude: [
   :some_other_attribute,
   :yet_another_attribute
 ])
@@ -92,7 +117,7 @@ receiver.yet_other_attribute
 If there is only one attribute being excluded, it can be specified as a single attribute name without enclosing it in an array.
 
 ```ruby
-SetAttributes.(receiver, data, exclude: :some_other_attribute)
+SetAttributes.(receiver, source, exclude: :some_other_attribute)
 ```
 
 ## Strictness
@@ -102,12 +127,12 @@ By default, `SetAttributes` will not set an attribute value that the receiver do
 ```ruby
 require 'set_attributes'
 
-data = {
+source = {
   some_random_attribute: 'some value'
 }
 
-SetAttributes.(receiver, data, strict: true)
-# => raises SetAttribute::Attribute::Error
+SetAttributes.(receiver, source, strict: true)
+# => raises SetAttributes::Assign::Error
 ```
 
 ## License

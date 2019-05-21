@@ -2,7 +2,7 @@ class SetAttributes
   module Controls
     module Hash
       def self.example
-        Controls::Object.example.to_h
+        Controls::Hashish.example.to_h
       end
 
       module MissingAttribute

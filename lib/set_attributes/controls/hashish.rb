@@ -1,6 +1,6 @@
 class SetAttributes
   module Controls
-    module Object
+    module Hashish
       def self.example
         example = Example.new
 
@@ -23,11 +23,11 @@ class SetAttributes
         'yet another value'
       end
 
-      class Example
-        attr_accessor :some_attribute
-        attr_accessor :some_other_attribute
-        attr_accessor :yet_another_attribute
-      end
+      Example = Struct.new(
+        :some_attribute,
+        :some_other_attribute,
+        :yet_another_attribute
+      )
 
       module New
         def self.example

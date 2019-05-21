@@ -1,8 +1,8 @@
 class SetAttributes
-  module Attribute
+  module Assign
     class Error < RuntimeError; end
 
-    def self.set(receiver, attribute, value, strict: nil)
+    def self.call(receiver, attribute, value, strict: nil)
       strict = true if strict.nil?
 
       setter = :"#{attribute}="
