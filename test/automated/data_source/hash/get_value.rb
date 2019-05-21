@@ -4,7 +4,7 @@ context "Data Source" do
   context "Hash" do
     context "Get Value" do
       context "Source Attribute Name and Receiver Attribute Name Are the Same" do
-        mapping = Controls::Mapping::Unbalanced.data
+        mapping = Controls::Mapping::Unbalanced.example
 
         data = SetAttributes::Controls::Hash.example
 
@@ -18,7 +18,7 @@ context "Data Source" do
       end
 
       context "Source Attribute Name and Receiver Attribute Name Are Not the Same" do
-        mapping = Controls::Mapping::Transform.data
+        mapping = Controls::Mapping::Transform.example
 
         data = SetAttributes::Controls::Hash.example
 

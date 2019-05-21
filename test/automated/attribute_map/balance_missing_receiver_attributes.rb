@@ -3,7 +3,7 @@ require_relative '../../test_init'
 context "Attribute Map" do
   context "Balance Missing Receiver Attributes" do
     context "Unary Mapping" do
-      mapping = Controls::Mapping::Unbalanced.data
+      mapping = Controls::Mapping::Unbalanced.example
 
       attribute_map = SetAttributes::Map.build(mapping)
 
@@ -18,7 +18,7 @@ context "Attribute Map" do
     end
 
     context "Balanced Mapping" do
-      mapping = Controls::Mapping::Transform.data
+      mapping = Controls::Mapping::Transform.example
 
       attribute_map = SetAttributes::Map.build(mapping)
 
