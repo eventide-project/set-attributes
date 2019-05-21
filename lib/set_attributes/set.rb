@@ -1,5 +1,5 @@
 class SetAttributes
-  module Set
+  module Assign
     class Error < RuntimeError; end
 
     def self.call(receiver, attribute, value, strict: nil)
