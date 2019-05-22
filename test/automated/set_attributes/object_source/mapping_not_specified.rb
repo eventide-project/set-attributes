@@ -3,12 +3,10 @@ require_relative '../../../test_init'
 context "Set Attributes" do
   context "Object Source" do
     context "Mapping Not Specified" do
-      source = Controls::Object::MissingAttribute.example
-      receiver = Controls::Object::New.example
-
       test "Is an error" do
-        assert proc { SetAttributes.(receiver, source) } do
-          raises_error?
+        __ = nil
+        assert proc { SetAttributes.(__, __) } do
+          raises_error? SetAttributes::DataSource::Object::Error
         end
       end
     end
