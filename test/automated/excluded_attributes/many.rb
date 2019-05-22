@@ -2,24 +2,36 @@ require_relative '../../test_init'
 
 context "Excluded Attributes" do
   context "Many" do
-    receiver = Controls::Object::New.example
-    source = Controls::Hash.example
+    hash_source = Controls::Hash.example
+    object_source = Controls::Object.example
 
-    SetAttributes.(receiver, source, exclude: [
-      :some_other_attribute,
-      :yet_another_attribute]
-    )
+    mapping = hash_source.keys
 
-    context "Excluded" do
-      test "Aren't set" do
-        assert(receiver.some_other_attribute.nil?)
-        assert(receiver.yet_another_attribute.nil?)
-      end
-    end
+    [[hash_source, 'Hash'], [object_source, 'Object']].each do |source_info|
 
-    context "Not Excluded Attributes" do
-      test "Are set" do
-        assert(receiver.some_attribute == 'some value')
+      source = source_info[0]
+      source_type = source_info[1]
+
+      context "#{source_type} Source" do
+        receiver = Controls::Object::New.example
+
+        SetAttributes.(receiver, source, include: mapping, exclude: [
+          :some_other_attribute,
+          :yet_another_attribute]
+        )
+
+        context "Excluded" do
+          test "Aren't set" do
+            assert(receiver.some_other_attribute.nil?)
+            assert(receiver.yet_another_attribute.nil?)
+          end
+        end
+
+        context "Not Excluded Attributes" do
+          test "Are set" do
+            assert(receiver.some_attribute == 'some value')
+          end
+        end
       end
     end
   end
