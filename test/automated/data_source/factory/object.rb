@@ -7,7 +7,7 @@ context "Data Source" do
 
       placeholder_mapping = []
 
-      data_source = SetAttributes::DataSource.build_data_source(source, placeholder_mapping)
+      data_source, _ = SetAttributes::DataSource.build_data_source(source, placeholder_mapping)
 
       test "Is an object data source" do
         assert(data_source.is_a?(SetAttributes::DataSource::Object))

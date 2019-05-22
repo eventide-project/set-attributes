@@ -1,15 +1,17 @@
 class SetAttributes
   attr_reader :receiver
   attr_reader :data_source
+  attr_reader :attribute_map
 
   def strict
     @strict ||= false
   end
   attr_writer :strict
 
-  def initialize(receiver, data_source)
+  def initialize(receiver, data_source, attribute_map)
     @receiver = receiver
     @data_source = data_source
+    @attribute_map = attribute_map
   end
 
   def self.build(receiver, source, copy: nil, include: nil, exclude: nil, strict: nil)
@@ -19,9 +21,9 @@ class SetAttributes
       include = copy
     end
 
-    data_source = SetAttributes::DataSource.build_data_source(source, include, exclude: exclude)
+    data_source, attribute_map = SetAttributes::DataSource.build_data_source(source, include, exclude: exclude)
 
-    new(receiver, data_source).tap do |instance|
+    new(receiver, data_source, attribute_map).tap do |instance|
       instance.strict = strict
     end
   end
@@ -34,7 +36,7 @@ class SetAttributes
   def call
     set_attributes = []
 
-    data_source.attribute_map.each_mapping do |source_attribute, receiver_attribute|
+    attribute_map.each_mapping do |source_attribute, receiver_attribute|
       value = data_source.get_value(source_attribute)
       Assign.(receiver, receiver_attribute, value, strict: strict)
       set_attributes << receiver_attribute

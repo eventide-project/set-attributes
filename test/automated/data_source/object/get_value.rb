@@ -3,32 +3,16 @@ require_relative '../../../test_init'
 context "Data Source" do
   context "Object" do
     context "Get Value" do
-      context "Source Attribute Name and Receiver Attribute Name Are the Same" do
-        mapping = Controls::Mapping::Unbalanced.example
+      mapping = Controls::Mapping.example
 
-        data = SetAttributes::Controls::Object.example
+      source = SetAttributes::Controls::Object.example
 
-        object_source = SetAttributes::DataSource::Object.build(data, mapping)
+      object_source, _ = SetAttributes::DataSource::Object.build(source, mapping)
 
-        value = object_source.get_value(:some_attribute)
+      value = object_source.get_value(:some_attribute)
 
-        test "Source value is retrieved by the receiver attribute name" do
-          assert(value = data.some_attribute)
-        end
-      end
-
-      context "Source Attribute Name and Receiver Attribute Name Are Not the Same" do
-        mapping = Controls::Mapping::Transform.example
-
-        data = SetAttributes::Controls::Object.example
-
-        object_source = SetAttributes::DataSource::Object.build(data, mapping)
-
-        value = object_source.get_value(:some_attribute)
-
-        test "Source value is retrieved by the receiver attribute name" do
-          assert(value = data.some_other_attribute)
-        end
+      test "Source value is retrieved by attribute method" do
+        assert(value = source.some_attribute)
       end
     end
   end
