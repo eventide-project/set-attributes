@@ -13,9 +13,8 @@ class SetAttributes
     attr_reader :source
     attr_reader :attribute_map
 
-    def initialize(source, attribute_map)
+    def initialize(source)
       @source = source
-      @attribute_map = attribute_map
     end
 
     module Build
@@ -29,12 +28,11 @@ class SetAttributes
         exclude = Array(exclude)
 
         attribute_map = SetAttributes::Map.build(include)
-
-        instance = new(source, attribute_map)
-
         attribute_map.exclude(exclude)
 
-        instance
+        instance = new(source)
+
+        return instance, attribute_map
       end
     end
 
