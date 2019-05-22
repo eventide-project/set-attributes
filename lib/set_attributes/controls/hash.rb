@@ -2,7 +2,11 @@ class SetAttributes
   module Controls
     module Hash
       def self.example
-        Controls::Hashish.example.to_h
+        {
+          :some_attribute => Attribute.some_attribute,
+          :some_other_attribute => Attribute.some_other_attribute,
+          :yet_another_attribute => Attribute.yet_another_attribute
+        }
       end
 
       module MissingAttribute
@@ -12,12 +16,6 @@ class SetAttributes
           example
         end
       end
-
-      Example = Struct.new(
-        :some_attribute,
-        :some_other_attribute,
-        :yet_another_attribute
-      )
 
       module Mapped
         def self.example
