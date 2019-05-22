@@ -3,9 +3,9 @@ require_relative '../../test_init'
 context "Excluded Attributes" do
   context "Many" do
     receiver = Controls::Object::New.example
-    data = Controls::Hash.example
+    source = Controls::Hash.example
 
-    SetAttributes.(receiver, data, exclude: [
+    SetAttributes.(receiver, source, exclude: [
       :some_other_attribute,
       :yet_another_attribute]
     )

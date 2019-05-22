@@ -3,9 +3,9 @@ require_relative '../../test_init'
 context "Included Attributes" do
   context "Many" do
     receiver = Controls::Object::New.example
-    data = Controls::Hash.example
+    source = Controls::Hash.example
 
-    SetAttributes.(receiver, data, copy: [
+    SetAttributes.(receiver, source, copy: [
       :some_other_attribute,
       :yet_another_attribute
     ])

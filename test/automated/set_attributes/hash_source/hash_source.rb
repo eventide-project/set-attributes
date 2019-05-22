@@ -3,9 +3,9 @@ require_relative '../../../test_init'
 context "Object Receiver" do
   context "From Hash" do
     receiver = Controls::Object::New.example
-    data = Controls::Hash::MissingAttribute.example
+    source = Controls::Hash::MissingAttribute.example
 
-    SetAttributes.(receiver, data)
+    SetAttributes.(receiver, source)
 
     test "Sets attributes that correspond to hash keys" do
       assert(receiver.some_attribute == 'some value')
