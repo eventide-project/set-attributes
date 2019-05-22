@@ -5,8 +5,6 @@ context "Included Attributes" do
     hash_source = Controls::Hash.example
     object_source = Controls::Object.example
 
-    mapping = hash_source.keys
-
     [[hash_source, 'Hash'], [object_source, 'Object']].each do |source_info|
 
       source = source_info[0]
