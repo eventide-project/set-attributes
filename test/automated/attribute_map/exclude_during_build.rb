@@ -1,11 +1,11 @@
-## Obsolete now that data source doesn't built attribute map
-
 require_relative '../../test_init'
 
-context "Data Source" do
+context "Attribute Map" do
   context "Excluded from Build" do
+    mapping = Controls::Mapping.example
+
     context "Exclude One Mapping" do
-      _, attribute_map = SetAttributes::Controls::DataSource.example(exclude: [:some_other_attribute])
+      attribute_map = SetAttributes::Map.build(mapping, exclude: [:some_other_attribute])
 
       test "Mapped attributes are included" do
         assert(attribute_map.include?(:some_attribute))
@@ -17,7 +17,7 @@ context "Data Source" do
     end
 
     context "Exclude Many Mappings" do
-      _, attribute_map = SetAttributes::Controls::DataSource.example(exclude: [:some_attribute, :some_other_attribute])
+      attribute_map = SetAttributes::Map.build(mapping, exclude: [:some_attribute, :some_other_attribute])
 
       test "Excluded mappings are removed from the attribute map" do
         refute(attribute_map.include?(:some_attribute))

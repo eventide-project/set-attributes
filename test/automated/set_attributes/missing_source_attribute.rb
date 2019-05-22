@@ -12,7 +12,7 @@ context "Set Attributes" do
       source = source_info[0]
       source_type = source_info[1]
 
-      data_source, _ = SetAttributes::DataSource.build_data_source(source, mapping)
+      data_source = SetAttributes::DataSource.build_data_source(source)
 
       refute(data_source.get_value(:some_attribute).nil?)
       refute(data_source.get_value(:some_other_attribute).nil?)

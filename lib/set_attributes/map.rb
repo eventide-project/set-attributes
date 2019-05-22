@@ -6,15 +6,20 @@ class SetAttributes
       @mappings ||= []
     end
 
-    def self.build(mappings)
+    def self.build(mappings, exclude: nil)
       mappings ||= []
       mappings = Array(mappings)
+
+      exclude ||= []
+      exclude = Array(exclude)
 
       instance = new
 
       mappings.each do |mapping|
         instance.add(mapping)
       end
+
+      instance.exclude(exclude)
 
       instance
     end
