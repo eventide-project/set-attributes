@@ -1,4 +1,4 @@
-require 'set_attributes/set'
+require 'set_attributes/assign'
 require 'set_attributes/map'
 require 'set_attributes/data_source'
 require 'set_attributes/data_source/hash'
