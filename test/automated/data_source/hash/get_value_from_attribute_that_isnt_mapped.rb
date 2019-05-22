@@ -3,11 +3,9 @@ require_relative '../../../test_init'
 context "Data Source" do
   context "Hash" do
     context "Get Value from Source Attribute that Isn't Mapped" do
-      mapping = nil
-
       source = SetAttributes::Controls::Hash.example
 
-      hash_source, _ = SetAttributes::DataSource::Hash.build(source, mapping)
+      hash_source = SetAttributes::DataSource::Hash.build(source)
 
       value = hash_source.get_value(Controls::Attribute::Random.example)
 

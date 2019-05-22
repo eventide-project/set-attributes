@@ -12,7 +12,7 @@ context "Missing Receiver Attributes" do
     source_type = source_info[1]
 
     context "#{source_type} Source" do
-      data_source, _ = SetAttributes::DataSource.build_data_source(source, mapping)
+      data_source = SetAttributes::DataSource.build_data_source(source)
 
       refute(data_source.get_value(:some_attribute).nil?)
       refute(data_source.get_value(:some_other_attribute).nil?)

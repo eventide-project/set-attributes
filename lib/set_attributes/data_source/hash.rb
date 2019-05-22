@@ -3,8 +3,8 @@ class SetAttributes
     class Hash
       include DataSource
 
-      def self.assure_include(source, include)
-        if include.nil? || include.empty?
+      def self.verify_mapping(source, include)
+        if include.nil?
           return source.keys
         end
 
