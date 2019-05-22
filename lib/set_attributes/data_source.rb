@@ -26,6 +26,12 @@ class SetAttributes
       def build(source, include=nil, exclude: nil)
         include = assure_include(source, include)
 
+        include ||= []
+        include = Array(include)
+
+        exclude ||= []
+        exclude = Array(exclude)
+
         attribute_map = SetAttributes::Map.build(include)
 
         instance = new(source, attribute_map)

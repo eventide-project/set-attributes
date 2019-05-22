@@ -15,15 +15,9 @@ class SetAttributes
   def self.build(receiver, source, copy: nil, include: nil, exclude: nil, strict: nil)
     strict ||= false
 
-    exclude ||= []
-    exclude = Array(exclude)
-
     unless copy.nil?
       include = copy
     end
-
-    include ||= []
-    include = Array(include)
 
     data_source = SetAttributes::DataSource.build_data_source(source, include, exclude: exclude)
 
