@@ -17,7 +17,7 @@ class SetAttributes
         end
       end
 
-      module Mapped
+      module Transform
         def self.example
           {
             :an_attribute => Attribute.some_attribute,

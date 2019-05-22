@@ -2,8 +2,8 @@ require_relative '../../test_init'
 
 context "Set Attributes" do
   context "Missing Source Attribute" do
-    hash_source = Controls::Hash::Mapped.example
-    object_source = Controls::Object::Mapped.example
+    hash_source = Controls::Hash::Transform.example
+    object_source = Controls::Object::Transform.example
 
     mapping = [
       {:an_attribute => :some_attribute},

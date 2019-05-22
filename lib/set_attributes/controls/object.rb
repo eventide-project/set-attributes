@@ -39,7 +39,7 @@ class SetAttributes
         )
       end
 
-      module Mapped
+      module Transform
         def self.example
           example = Example.new
 
