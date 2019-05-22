@@ -18,6 +18,15 @@ class SetAttributes
         :some_other_attribute,
         :yet_another_attribute
       )
+
+      module Mapped
+        def self.example
+          {
+            :an_attribute => Object.some_attribute,
+            :some_other_attribute => Object.some_other_attribute
+          }
+        end
+      end
     end
   end
 end
