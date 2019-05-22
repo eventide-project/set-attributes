@@ -4,7 +4,7 @@ class SetAttributes
       include DataSource
 
       def self.specialize_mapping(source, include)
-        if include.nil? || include.empty?
+        if include.nil? || include.empty? ## Test empty case. Should not exist.
           return source.keys
         end
 

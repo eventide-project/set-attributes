@@ -1,3 +1,5 @@
+## Obsolete now that data source doesn't built attribute map
+
 require_relative '../../test_init'
 
 context "Data Source" do

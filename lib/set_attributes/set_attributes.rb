@@ -21,7 +21,13 @@ class SetAttributes
       include = copy
     end
 
-    data_source, attribute_map = SetAttributes::DataSource.build_data_source(source, include, exclude: exclude)
+    data_source_implementation = DataSource.implementation(source)
+    include = data_source_implementation.verify_mapping(source, include)
+
+    attribute_map = SetAttributes::Map.build(include)
+    attribute_map.exclude(exclude) ## Needs to be in Map.build
+
+    data_source = SetAttributes::DataSource.build_data_source(source)
 
     new(receiver, data_source, attribute_map).tap do |instance|
       instance.strict = strict

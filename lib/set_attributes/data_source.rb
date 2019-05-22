@@ -4,7 +4,7 @@ class SetAttributes
       cls.class_exec do
         extend Build
 
-        def self.specialize_mapping(source, include)
+        def self.verify_mapping(source, include)
           include
         end
       end
@@ -19,20 +19,13 @@ class SetAttributes
 
     module Build
       def build(source, include=nil, exclude: nil)
-        include = specialize_mapping(source, include)
-
-        include ||= []
-        include = Array(include)
-
-        exclude ||= []
-        exclude = Array(exclude)
-
-        attribute_map = SetAttributes::Map.build(include)
-        attribute_map.exclude(exclude)
+        # attribute_map = SetAttributes::Map.build(include)
+        # attribute_map.exclude(exclude) ## This should be part of attribute map
 
         instance = new(source)
 
-        return instance, attribute_map
+        # return instance, attribute_map
+        return instance
       end
     end
 

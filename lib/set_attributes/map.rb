@@ -7,6 +7,9 @@ class SetAttributes
     end
 
     def self.build(mappings)
+      mappings ||= []
+      mappings = Array(mappings)
+
       instance = new
 
       mappings.each do |mapping|
