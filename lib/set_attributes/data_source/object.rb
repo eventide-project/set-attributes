@@ -13,9 +13,14 @@ class SetAttributes
         return include
       end
 
-      def get_value(source_attribute)
-        return nil unless source.respond_to?(source_attribute)
-        source.send(source_attribute)
+      def get_value(attribute)
+        return nil unless attribute?(attribute)
+        source.send(attribute)
+      end
+      alias :[] :get_value
+
+      def attribute?(attribute)
+        source.respond_to?(attribute)
       end
     end
   end

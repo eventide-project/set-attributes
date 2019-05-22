@@ -17,9 +17,9 @@ context "Set Attributes" do
 
       data_source = SetAttributes::DataSource.build_data_source(source)
 
-      refute(data_source.get_value(:an_attribute).nil?)
-      refute(data_source.get_value(:some_other_attribute).nil?)
-      assert(data_source.get_value(:yet_another_attribute).nil?)
+      refute(data_source[:an_attribute].nil?)
+      refute(data_source[:some_other_attribute].nil?)
+      assert(data_source[:yet_another_attribute].nil?)
 
       context "#{source_type} Source" do
         receiver = Controls::Object::New.example

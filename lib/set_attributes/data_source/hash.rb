@@ -11,8 +11,13 @@ class SetAttributes
         return include
       end
 
-      def get_value(source_attribute)
-        source[source_attribute]
+      def get_value(attribute)
+        source[attribute]
+      end
+      alias :[] :get_value
+
+      def attribute?(attribute)
+        source.keys.include?(attribute)
       end
     end
   end
