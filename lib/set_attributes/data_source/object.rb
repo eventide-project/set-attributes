@@ -7,7 +7,7 @@ class SetAttributes
 
       def self.assure_include(source, include)
         if include.nil?
-          raise Error, "Object source source is missing the include mapping"
+          raise Error, "Object source is missing the include mapping"
         end
 
         return include
