@@ -13,10 +13,6 @@ class SetAttributes
   end
 
   def self.build(receiver, source, copy: nil, include: nil, exclude: nil, strict: nil)
-p '** SET ATTRIBUTES'
-p 'include immediate value in build'
-pp include
-
     strict ||= false
 
     exclude ||= []
@@ -29,14 +25,7 @@ pp include
     include ||= []
     include = Array(include)
 
-p 'include pre data_source build'
-pp include
-
     data_source = SetAttributes::DataSource.build_data_source(source, include, exclude: exclude)
-
-p 'include post data_source build'
-pp include
-
 
     new(receiver, data_source).tap do |instance|
       instance.strict = strict
@@ -50,11 +39,6 @@ pp include
 
   def call
     set_attributes = []
-
-p 'SET ATTRIBUTES'
-p 'data_source'
-pp data_source
-
 
     data_source.attribute_map.each_mapping do |source_attribute, receiver_attribute|
       value = data_source.get_value(source_attribute)

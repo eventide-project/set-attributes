@@ -7,11 +7,6 @@ class SetAttributes
 
       setter = :"#{attribute}="
 
-p 'ASSIGN'
-pp value
-pp attribute
-pp receiver
-
       if receiver.respond_to?(setter)
         receiver.send(setter, value)
       else

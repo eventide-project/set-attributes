@@ -24,16 +24,7 @@ class SetAttributes
 
     module Build
       def build(source, include=nil, exclude: nil)
-
-p 'DATA SOURCE BUILD'
-p 'include pre assure'
-pp include
-
         include = assure_include(source, include)
-
-p 'include post assure'
-pp include
-
 
         attribute_map = SetAttributes::Map.build(include)
 
