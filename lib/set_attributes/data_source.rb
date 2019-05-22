@@ -18,10 +18,6 @@ class SetAttributes
       @attribute_map = attribute_map
     end
 
-    def exclude(*attributes)
-      attribute_map.exclude(attributes)
-    end
-
     module Build
       def build(source, include=nil, exclude: nil)
         include = assure_include(source, include)
@@ -35,7 +31,9 @@ class SetAttributes
         attribute_map = SetAttributes::Map.build(include)
 
         instance = new(source, attribute_map)
-        instance.exclude(exclude)
+
+        attribute_map.exclude(exclude)
+
         instance
       end
     end
