@@ -4,7 +4,7 @@ class SetAttributes
       cls.class_exec do
         extend Build
 
-        def self.assure_include(source, include)
+        def self.specialize_mapping(source, include)
           include
         end
       end
@@ -19,7 +19,7 @@ class SetAttributes
 
     module Build
       def build(source, include=nil, exclude: nil)
-        include = assure_include(source, include)
+        include = specialize_mapping(source, include)
 
         include ||= []
         include = Array(include)

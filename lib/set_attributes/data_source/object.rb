@@ -5,7 +5,7 @@ class SetAttributes
 
       Error = Class.new(RuntimeError)
 
-      def self.assure_include(source, include)
+      def self.specialize_mapping(source, include)
         if include.nil?
           raise Error, "Object source is missing the include mapping"
         end
