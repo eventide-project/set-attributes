@@ -36,7 +36,6 @@ class SetAttributes
 
     data_source.attribute_map.each_mapping do |source_attribute, receiver_attribute|
       value = data_source.get_value(source_attribute)
-
       Assign.(receiver, receiver_attribute, value, strict: strict)
       set_attributes << receiver_attribute
     end

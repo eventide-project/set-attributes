@@ -12,6 +12,7 @@ context "Set Attributes" do
       ])
 
       test "Sets attributes that correspond to the mapped source attribute" do
+        assert(receiver.some_attribute == source.an_attribute)
         assert(receiver.some_attribute == 'some value')
         assert(receiver.some_other_attribute == 'some other value')
       end

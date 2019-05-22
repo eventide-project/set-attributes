@@ -11,8 +11,7 @@ class SetAttributes
         return include
       end
 
-      def get_value(attribute)
-        source_attribute = attribute_map[attribute]
+      def get_value(source_attribute)
         source[source_attribute]
       end
     end

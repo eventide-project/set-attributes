@@ -13,11 +13,8 @@ class SetAttributes
         return include
       end
 
-      def get_value(attribute)
-        source_attribute = attribute_map[attribute]
-
-        return nil if source_attribute.nil?
-
+      def get_value(source_attribute)
+        return nil unless source.respond_to?(source_attribute)
         source.send(source_attribute)
       end
     end
