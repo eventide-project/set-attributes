@@ -4,23 +4,11 @@ class SetAttributes
       def self.example
         example = Example.new
 
-        example.some_attribute = some_attribute
-        example.some_other_attribute = some_other_attribute
-        example.yet_another_attribute = yet_another_attribute
+        example.some_attribute = Attribute.some_attribute
+        example.some_other_attribute = Attribute.some_other_attribute
+        example.yet_another_attribute = Attribute.yet_another_attribute
 
         example
-      end
-
-      def self.some_attribute
-        'some value'
-      end
-
-      def self.some_other_attribute
-        'some other value'
-      end
-
-      def self.yet_another_attribute
-        'yet another value'
       end
 
       class Example
@@ -39,8 +27,8 @@ class SetAttributes
         def self.example
           example = Example.new
 
-          example.some_attribute = Object.some_attribute
-          example.some_other_attribute = Object.some_other_attribute
+          example.some_attribute = Attribute.some_attribute
+          example.some_other_attribute = Attribute.some_other_attribute
 
           example
         end
@@ -55,8 +43,8 @@ class SetAttributes
         def self.example
           example = Example.new
 
-          example.an_attribute = Object.some_attribute
-          example.some_other_attribute = Object.some_other_attribute
+          example.an_attribute = Attribute.some_attribute
+          example.some_other_attribute = Attribute.some_other_attribute
 
           example
         end

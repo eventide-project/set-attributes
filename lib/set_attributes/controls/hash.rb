@@ -22,8 +22,8 @@ class SetAttributes
       module Mapped
         def self.example
           {
-            :an_attribute => Object.some_attribute,
-            :some_other_attribute => Object.some_other_attribute
+            :an_attribute => Attribute.some_attribute,
+            :some_other_attribute => Attribute.some_other_attribute
           }
         end
       end
