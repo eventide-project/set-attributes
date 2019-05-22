@@ -50,6 +50,22 @@ class SetAttributes
           :some_other_attribute,
         )
       end
+
+      module Mapped
+        def self.example
+          example = Example.new
+
+          example.an_attribute = Object.some_attribute
+          example.some_other_attribute = Object.some_other_attribute
+
+          example
+        end
+
+        Example = Struct.new(
+          :an_attribute,
+          :some_other_attribute,
+        )
+      end
     end
   end
 end
