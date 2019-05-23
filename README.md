@@ -48,7 +48,11 @@ source.some_attribute = 'some value',
 source.some_other_attribute = 'some other value'
 source.yet_another_attribute = 'yet another value'
 
-SetAttributes.(receiver, source)
+SetAttributes.(receiver, source, include: [
+  :some_attribute,
+  :some_other_attribute,
+  :yet_another_attribute
+])
 
 receiver.some_attribute
 # => "some value"
@@ -60,6 +64,13 @@ receiver.yet_another_attribute
 # => "yet another value"
 ```
 
+When using an object data source, the list of attributes to be copied must be specified or else an error will be raise.
+
+```ruby
+SetAttributes.(receiver, source)
+# => SetAttributes::DataSource::Object::Error
+```
+
 ## Whitelist / Blacklist
 
 To control what properties are set, the following optional parameters may be specified:
@@ -68,7 +79,7 @@ To control what properties are set, the following optional parameters may be spe
  - `copy:` Alias for `include`.
  - `exclude:` Array of symbols specifying the attributes to be prevented from being set. If a key is present in both `include` and `exclude`, it will be excluded.
 
-### Include
+### Include (or Copy)
 
 ```ruby
 SetAttributes.(receiver, source, include: [
@@ -85,6 +96,14 @@ receiver.some_other_attribute
 receiver.yet_another_attribute
 # => "yet another value"
 ```
+
+The `:copy` parameter can also be used instead of `:include`.
+
+```ruby
+SetAttributes.(receiver, source, copy: [
+  :some_other_attribute,
+  :yet_another_attribute
+])
 
 #### Singular Form
 
