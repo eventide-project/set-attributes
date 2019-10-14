@@ -23,8 +23,8 @@ context "Missing Receiver Attributes" do
         receiver = Controls::Object::MissingAttribute.example
 
         test "Is an error" do
-          assert proc { SetAttributes.(receiver, source, strict: true, include: mapping) } do
-            raises_error? SetAttributes::Assign::Error
+          assert_raises SetAttributes::Assign::Error do
+            SetAttributes.(receiver, source, strict: true, include: mapping)
           end
         end
       end

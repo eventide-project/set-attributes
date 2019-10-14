@@ -7,8 +7,8 @@ context "Set Attributes" do
       reciever = nil
 
       test "Is an error" do
-        assert proc { SetAttributes.build(reciever, source) } do
-          raises_error? SetAttributes::DataSource::Object::Error
+        assert_raises SetAttributes::DataSource::Object::Error do
+          SetAttributes.build(reciever, source)
         end
       end
     end
