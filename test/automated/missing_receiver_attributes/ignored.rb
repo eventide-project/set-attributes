@@ -21,7 +21,7 @@ context "Missing Receiver Attributes" do
       receiver = Controls::Object::MissingAttribute.example
 
       test "Not an error" do
-        refute_raises SetAttributes::Assign::Error do
+        refute_raises(SetAttributes::Assign::Error) do
           SetAttributes.(receiver, source, include: mapping)
         end
       end

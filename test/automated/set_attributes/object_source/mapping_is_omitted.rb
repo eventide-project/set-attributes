@@ -7,7 +7,7 @@ context "Set Attributes" do
       reciever = nil
 
       test "Is an error" do
-        assert_raises SetAttributes::DataSource::Object::Error do
+        assert_raises(SetAttributes::DataSource::Object::Error) do
           SetAttributes.build(reciever, source)
         end
       end
