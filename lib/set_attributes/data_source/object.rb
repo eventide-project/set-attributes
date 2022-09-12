@@ -15,7 +15,7 @@ class SetAttributes
 
       def get_value(attribute)
         return nil unless attribute?(attribute)
-        source.send(attribute)
+        source.public_send(attribute)
       end
       alias :[] :get_value
 

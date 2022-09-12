@@ -8,7 +8,7 @@ class SetAttributes
       setter = :"#{attribute}="
 
       if receiver.respond_to?(setter)
-        receiver.send(setter, value)
+        receiver.public_send(setter, value)
       else
         if strict
           error_msg = "#{receiver} has no setter for #{attribute}"
