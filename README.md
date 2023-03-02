@@ -64,7 +64,7 @@ receiver.yet_another_attribute
 # => "yet another value"
 ```
 
-When using an object data source, the list of attributes to be copied must be specified or else an error will be raise.
+When using an object data source, the list of attributes to be copied must be specified or else an error will be raised.
 
 ```ruby
 SetAttributes.(receiver, source)
