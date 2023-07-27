@@ -10,7 +10,7 @@ context "Data Source" do
       value = hash_source.get_value(:some_attribute)
 
       test "Source value is retrieved by indexer and key" do
-        assert(value = source[:some_attribute])
+        assert(value == source[:some_attribute])
       end
     end
   end

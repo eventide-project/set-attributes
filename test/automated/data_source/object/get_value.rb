@@ -10,7 +10,7 @@ context "Data Source" do
       value = object_source.get_value(:some_attribute)
 
       test "Source value is retrieved by attribute method" do
-        assert(value = source.some_attribute)
+        assert(value == source.some_attribute)
       end
     end
   end
