@@ -1,4 +1,4 @@
-require_relative '../../../test_init'
+require_relative '../../automated_init'
 
 context "Data Source" do
   context "Factory" do

@@ -1,4 +1,4 @@
-require_relative '../../test_init'
+require_relative '../automated_init'
 
 context "Attribute Map" do
   context "Get Missing Attribute" do

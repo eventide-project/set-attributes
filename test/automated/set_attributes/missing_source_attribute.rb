@@ -1,4 +1,4 @@
-require_relative '../../test_init'
+require_relative '../automated_init'
 
 context "Set Attributes" do
   context "Missing Source Attribute" do

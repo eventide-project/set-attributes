@@ -1,4 +1,4 @@
-require_relative '../../test_init'
+require_relative '../automated_init'
 
 context "Missing Receiver Attributes" do
   context "Strict" do
