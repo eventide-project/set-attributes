@@ -2,15 +2,15 @@ class SetAttributes
   module Controls
     module Attribute
       def self.some_attribute
-        'some value'
+        "some value"
       end
 
       def self.some_other_attribute
-        'some other value'
+        "some other value"
       end
 
       def self.yet_another_attribute
-        'yet another value'
+        "yet another value"
       end
 
       module Random

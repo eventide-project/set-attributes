@@ -1,3 +1,3 @@
-require_relative './load_path'
+require_relative "./load_path"
 
-require 'set_attributes'
+require "set_attributes"

@@ -1,11 +1,11 @@
-require_relative '../automated_init'
+require_relative "../automated_init"
 
 context "Data Source" do
   context "Attribute Predicate" do
     hash_source = Controls::Hash.example
     object_source = Controls::Object.example
 
-    [[hash_source, 'Hash'], [object_source, 'Object']].each do |source_info|
+    [[hash_source, "Hash"], [object_source, "Object"]].each do |source_info|
 
       source = source_info[0]
       source_type = source_info[1]

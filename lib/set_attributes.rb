@@ -1,6 +1,6 @@
-require 'set_attributes/assign'
-require 'set_attributes/map'
-require 'set_attributes/data_source'
-require 'set_attributes/data_source/hash'
-require 'set_attributes/data_source/object'
-require 'set_attributes/set_attributes'
+require "set_attributes/assign"
+require "set_attributes/map"
+require "set_attributes/data_source"
+require "set_attributes/data_source/hash"
+require "set_attributes/data_source/object"
+require "set_attributes/set_attributes"

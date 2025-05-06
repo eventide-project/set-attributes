@@ -1,4 +1,4 @@
-require_relative '../automated_init'
+require_relative "../automated_init"
 
 context "Included Attributes" do
   context "Many" do
@@ -7,7 +7,7 @@ context "Included Attributes" do
 
     mapping = hash_source.keys
 
-    [[hash_source, 'Hash'], [object_source, 'Object']].each do |source_info|
+    [[hash_source, "Hash"], [object_source, "Object"]].each do |source_info|
 
       source = source_info[0]
       source_type = source_info[1]
@@ -22,8 +22,8 @@ context "Included Attributes" do
 
         context "Included" do
           test "Are set" do
-            assert(receiver.some_other_attribute == 'some other value')
-            assert(receiver.yet_another_attribute == 'yet another value')
+            assert(receiver.some_other_attribute == "some other value")
+            assert(receiver.yet_another_attribute == "yet another value")
           end
         end
 

@@ -1,4 +1,4 @@
-require_relative '../automated_init'
+require_relative "../automated_init"
 
 context "Missing Receiver Attributes" do
   hash_source = Controls::Hash.example
@@ -6,7 +6,7 @@ context "Missing Receiver Attributes" do
 
   mapping = hash_source.keys
 
-  [[hash_source, 'Hash'], [object_source, 'Object']].each do |source_info|
+  [[hash_source, "Hash"], [object_source, "Object"]].each do |source_info|
 
     source = source_info[0]
     source_type = source_info[1]

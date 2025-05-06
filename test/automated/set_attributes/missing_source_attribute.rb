@@ -1,4 +1,4 @@
-require_relative '../automated_init'
+require_relative "../automated_init"
 
 context "Set Attributes" do
   context "Missing Source Attribute" do
@@ -7,7 +7,7 @@ context "Set Attributes" do
 
     mapping = hash_source.keys
 
-    [[hash_source, 'Hash'], [object_source, 'Object']].each do |source_info|
+    [[hash_source, "Hash"], [object_source, "Object"]].each do |source_info|
 
       source = source_info[0]
       source_type = source_info[1]
@@ -28,8 +28,8 @@ context "Set Attributes" do
         SetAttributes.(receiver, source, include: mapping)
 
         test "Sets attributes that correspond to the mapped source attribute" do
-          assert(receiver.some_attribute == 'some value')
-          assert(receiver.some_other_attribute == 'some other value')
+          assert(receiver.some_attribute == "some value")
+          assert(receiver.some_other_attribute == "some other value")
         end
 
         test "Does not set attributes that are not mapped" do

@@ -1,1 +1,1 @@
-require_relative 'test/automated'
+require_relative "test/automated"
